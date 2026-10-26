@@ -31,6 +31,12 @@
       <image:loc>https://www.edackdavid.com/images/pin-summer-fayre.jpg</image:loc>
     </image:image>
   </url>
-  <!-- Draft, not listed until approved: https://www.edackdavid.com/elements-of-lean/bonus-sipoc/ -->
+  <url>
+    <loc>https://www.edackdavid.com/elements-of-lean/bonus-sipoc/</loc>
+    <lastmod>2026-10-26</lastmod>
+    <image:image>
+      <image:loc>https://www.edackdavid.com/images/pin-summer-fayre.jpg</image:loc>
+    </image:image>
+  </url>
 
 </urlset>
