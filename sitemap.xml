@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.edackdavid.com/</loc>
+    <lastmod>2026-10-25</lastmod>
+    <image:image>
+      <image:loc>https://www.edackdavid.com/images/lean-heroes-cover-960.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.edackdavid.com/images/yellow-belt-certificate-1280.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.edackdavid.com/images/cookie-cover-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.edackdavid.com/images/watchers-guide-cover-800.webp</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.edackdavid.com/images/edack-logo-440.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.edackdavid.com/games/lean-heroes-dinner-disaster.html</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.edackdavid.com/games/lean-heroes-summer-fayre.html</loc>
+    <lastmod>2026-10-26</lastmod>
+    <image:image>
+      <image:loc>https://www.edackdavid.com/images/pin-summer-fayre.jpg</image:loc>
+    </image:image>
+  </url>
+  <!-- Draft, not listed until approved: https://www.edackdavid.com/elements-of-lean/bonus-sipoc/ -->
+
+</urlset>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What is SIPOC? Teach it to your child with a lemonade stall | EDACK Books</title>
+  <meta name="description" content="SIPOC is a one-page map of any process: Suppliers, Inputs, Process, Outputs, Customers. Learn it in a minute, teach it tonight with a lemonade stall, then check you've got it.">
+
+  <!-- DRAFT: this lesson is waiting for approval (draft: true).
+       It stays hidden from Google until it is approved: then delete the "draft" and "robots" lines below. -->
+  <meta name="draft" content="true">
+  <meta name="robots" content="noindex">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://www.edackdavid.com/elements-of-lean/bonus-sipoc/">
+
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="../../edack-favicon.ico" sizes="32x32">
+  <link rel="icon" href="../../edack-favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../../edack-apple-touch-icon.png">
+  <link rel="preload" href="../../fonts/fredoka.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../../css/styles.css">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="EDACK Books">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="What is SIPOC? Teach it to your child with a lemonade stall">
+  <meta property="og:description" content="Learn SIPOC in a minute, teach it tonight with a lemonade stall, then check you've got it.">
+  <meta property="og:url" content="https://www.edackdavid.com/elements-of-lean/bonus-sipoc/">
+  <meta property="og:image" content="https://www.edackdavid.com/images/pin-summer-fayre.jpg">
+  <meta property="og:image:width" content="1000">
+  <meta property="og:image:height" content="1500">
+  <meta property="og:image:alt" content="The Lean Heroes at the Summer Fayre: a free lemonade-stall game that teaches SIPOC">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    "name": "Bonus lesson: SIPOC",
+    "headline": "What is SIPOC? Teach it to your child with a lemonade stall",
+    "url": "https://www.edackdavid.com/elements-of-lean/bonus-sipoc/",
+    "image": "https://www.edackdavid.com/images/pin-summer-fayre.jpg",
+    "inLanguage": "en-GB",
+    "isAccessibleForFree": true,
+    "learningResourceType": "Lesson",
+    "teaches": "SIPOC (Suppliers, Inputs, Process, Outputs, Customers)",
+    "educationalLevel": "Beginner",
+    "audience": { "@type": "Audience", "audienceType": "Parents, guardians and teachers" },
+    "author": { "@type": "Person", "name": "David Edack", "alternateName": "EDACK", "url": "https://www.edackdavid.com/#about" },
+    "publisher": { "@type": "Organization", "name": "EDACK Books", "url": "https://www.edackdavid.com/" },
+    "hasPart": { "@type": "VideoGame", "name": "The Lean Heroes at the Summer Fayre", "url": "https://www.edackdavid.com/games/lean-heroes-summer-fayre.html" }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the lesson</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="../../index.html">
+        <img class="logo-img" src="../../images/edack-logo-112.webp" srcset="../../images/edack-logo-112.webp 1x, ../../images/edack-logo-224.webp 2x"
+             width="112" height="114" alt="EDACK Books logo: Fortitude and Reason">
+        <span>EDACK Books</span>
+      </a>
+
+      <button class="menu-toggle" type="button" popovertarget="site-nav" aria-label="Menu">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" popover aria-label="Main">
+        <ul>
+          <li><a href="../../index.html#books">Books</a></li>
+          <li><a href="../../index.html#game">Game</a></li>
+          <li><a href="../../index.html#free-printable">Free printables</a></li>
+          <li><a href="../../index.html#about">About</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="section lesson">
+    <article class="container lesson-inner">
+      <nav class="lesson-crumbs" aria-label="You are here">
+        <a href="../../index.html">Home</a> › <span>Elements of Lean</span> › <span aria-current="page">Bonus lesson: SIPOC</span>
+      </nav>
+
+      <p class="lesson-kicker">Elements of Lean · Bonus lesson</p>
+      <h1>What is SIPOC? Teach it to your child with a lemonade stall</h1>
+      <p class="lesson-lead">SIPOC is a one-page map of a process, in five columns: Suppliers, Inputs, Process, Outputs, Customers. You draw it before you change anything, so everyone sees the whole picture first.</p>
+
+      <!-- The real EDACK thing on this page: the free Summer Fayre game, made for this lesson -->
+      <aside class="lesson-game">
+        <p class="lesson-game-title"><span aria-hidden="true">🍋</span> Play it first: The Lean Heroes at the Summer Fayre</p>
+        <p>A free game made for this lesson. Your child plans a lemonade stall with SIPOC, then runs it on fayre day. Ten minutes, on a phone or tablet.</p>
+        <a class="btn btn-primary" href="../../games/lean-heroes-summer-fayre.html">Play the free game</a>
+      </aside>
+
+      <section aria-labelledby="part-1">
+        <h2 id="part-1"><span class="lesson-num">1</span> The idea in one minute</h2>
+        <p>Start with a real stall. The Lean Heroes want to sell lemonade at the village fayre. Before anyone squeezes a lemon, they lay out five columns.</p>
+        <table class="sipoc-table">
+          <caption>A SIPOC for a lemonade stall</caption>
+          <thead>
+            <tr><th scope="col">Column</th><th scope="col">The question</th><th scope="col">At the stall</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Suppliers</th><td>Who gives us what we need?</td><td>The corner shop, Grandma's lemon tree, the fayre committee</td></tr>
+            <tr><th scope="row">Inputs</th><td>What do we need?</td><td>Lemons, sugar, ice, cups, a cash tin with change</td></tr>
+            <tr><th scope="row">Process</th><td>What are the main steps?</td><td>Squeeze and mix, pour and sell, tidy up</td></tr>
+            <tr><th scope="row">Outputs</th><td>What comes out?</td><td>Cups of lemonade, money for the dojo</td></tr>
+            <tr><th scope="row">Customers</th><td>Who gets it?</td><td>The vicar, the footballers, Mrs Jones from the cake stall</td></tr>
+          </tbody>
+        </table>
+        <p>That's all SIPOC is. It doesn't fix anything on its own. It shows you where the process starts, where it ends, and who is involved. Then you spot problems early: no cups packed, or nobody planning to tidy up.</p>
+        <p>Some things matter but don't go in a column. Sunny weather isn't a supplier: it changes how many customers come. Someone tasting the stock isn't a process step: it's waste.</p>
+      </section>
+
+      <section aria-labelledby="part-2">
+        <h2 id="part-2"><span class="lesson-num">2</span> Where it fits</h2>
+        <p>SIPOC isn't in the first Lean Heroes book. It fits just before the first step of DMAIC.</p>
+        <p>In <cite>The Lean Heroes and the Dinner Disaster</cite>, Lauren the Owl starts the Define step by writing the problem in one sentence. A SIPOC is the picture around that sentence. Improvement teams often draw one at the start of a project, in Define, to agree the edges of the problem.</p>
+        <p>In the game, the stall's problems lead to DMAIC too. Your child picks one problem and sees how Define, Measure, Analyse, Improve and Control would fix it.</p>
+      </section>
+
+      <section aria-labelledby="part-3">
+        <h2 id="part-3"><span class="lesson-num">3</span> Teach it tonight (15 minutes)</h2>
+        <p><strong>You need:</strong> a sheet of paper, a pen, and tomorrow's breakfast.</p>
+        <ol class="lesson-steps">
+          <li><strong>2 minutes.</strong> Play the first stage of the game together, or just read the lemonade table above.</li>
+          <li><strong>3 minutes.</strong> Draw five columns. Write S, I, P, O, C at the top. Say what each letter asks, using the table.</li>
+          <li><strong>5 minutes.</strong> Fill it in for breakfast. Let your child do the writing. Who supplies the bread and milk? What goes in? What are the steps? What comes out? Who eats it?</li>
+          <li><strong>3 minutes.</strong> Hunt for one thing that goes wrong at breakfast. Is something missing from Inputs, like no milk? Is a step missing from Process, like nobody clearing the table?</li>
+          <li><strong>2 minutes.</strong> Pin the sheet on the fridge. Tomorrow morning, check it against what really happens.</li>
+        </ol>
+        <p>If your child gets stuck, go back to the stall. Concrete first, names second.</p>
+      </section>
+
+      <section aria-labelledby="part-4">
+        <h2 id="part-4"><span class="lesson-num">4</span> The Feynman check</h2>
+        <div class="lesson-check">
+          <p>Can you explain the five letters to your child using your own kitchen? Then you've got it.</p>
+          <p>Try these three without looking:</p>
+          <ol>
+            <li>What does each letter of SIPOC stand for, and what question does it ask?</li>
+            <li>Why is "sunny weather" not a supplier?</li>
+            <li>Why do you draw a SIPOC <em>before</em> trying to fix anything?</li>
+          </ol>
+          <p>Where you get stuck is the bit to read again. That's the useful part.</p>
+        </div>
+      </section>
+
+      <section aria-labelledby="part-5">
+        <h2 id="part-5"><span class="lesson-num">5</span> Next step</h2>
+        <p>Next, pick one real problem from your breakfast SIPOC and write it in one sentence. That's the Define step.</p>
+        <p>One idea to keep from the book. It ends with the Lean Hero Pledge: <q>I will never blame a person when I can fix a process.</q> A SIPOC helps, because it looks at the whole process, not at who got it wrong.</p>
+        <p>If your child liked this, the Lean Heroes book has the whole story. <a href="../../index.html#books">Find out about the book</a>.</p>
+      </section>
+
+      <p class="lesson-note">This lesson teaches the basics and the thinking. It is not a replacement for a professional Lean Six Sigma Belt course.</p>
+
+      <aside class="lesson-author" aria-label="About the author">
+        <img src="../../images/edack-logo-112.webp" width="112" height="114" loading="lazy" decoding="async" alt="EDACK Books logo: Fortitude and Reason">
+        <p>EDACK writes the Lean Heroes books for children aged 8 to 11, and British satire for grown-ups. <a href="../../index.html#about">About EDACK</a></p>
+      </aside>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="lesson-footer-text">© 2026 EDACK Books · This site uses no cookies or tracking.</p>
+    </div>
+  </footer>
+</body>
+</html>

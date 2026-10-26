@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+<meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EDACK Books | Funny books that make you think</title>
+  <meta name="description" content="Funny books that make you think. The Lean Heroes for ages 8 to 11, a free printable Lean Hero certificate, and British satire for grown-ups.">
+
+  <!-- Safety settings: the page may only load things from this site, so nothing can sneak in a tracker -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Web address: the site lives at https://www.edackdavid.com (see docs/CNAME).
+       The old address https://dai1964.github.io/edack-books/ sends visitors here by itself.
+       If the domain ever changes, replace every https://www.edackdavid.com on this page
+       (and in robots.txt, sitemap.xml and CNAME). -->
+  <link rel="canonical" href="https://www.edackdavid.com/">
+
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#FDF3DF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1E1209" media="(prefers-color-scheme: dark)">
+
+  <!-- Browser-tab and home-screen icons (the EDACK logo).
+       The older badge icons (favicon.ico, favicon-32.png, apple-touch-icon.png) are kept but no longer used. -->
+  <link rel="icon" href="edack-favicon.ico" sizes="32x32">
+  <link rel="icon" href="edack-favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="edack-apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Load the heading font and the top picture early, so the page appears fast -->
+  <link rel="preload" href="fonts/fredoka.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" as="image" href="images/hero-artwork-1080.webp"
+        imagesrcset="images/hero-artwork-640.webp 640w, images/hero-artwork-1080.webp 1080w, images/hero-artwork-1600.webp 1600w"
+        imagesizes="(min-width: 900px) 62vw, 100vw" fetchpriority="high">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/main.js" defer></script>
+
+  <!-- Sharing: what Pinterest, Facebook, WhatsApp and others show -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="EDACK Books">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="EDACK Books | Funny books that make you think">
+  <meta property="og:description" content="Stories for curious kids and grown-ups who've had enough. Plus a free printable Lean Hero certificate.">
+  <meta property="og:url" content="https://www.edackdavid.com/">
+  <meta property="og:image" content="https://www.edackdavid.com/images/share-lean-heroes.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="The cover of The Lean Heroes and the Dinner Disaster by David Edack">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="EDACK Books | Funny books that make you think">
+  <meta name="twitter:description" content="Stories for curious kids and grown-ups who've had enough. Plus a free printable Lean Hero certificate.">
+  <meta name="twitter:image" content="https://www.edackdavid.com/images/share-lean-heroes.jpg">
+  <meta name="twitter:image:alt" content="The cover of The Lean Heroes and the Dinner Disaster by David Edack">
+
+  <!-- Book details for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://www.edackdavid.com/#author",
+        "name": "David Edack",
+        "alternateName": "EDACK",
+        "url": "https://www.edackdavid.com/",
+        "description": "EDACK writes British satire for adults and problem-solving adventures for children."
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.edackdavid.com/#website",
+        "url": "https://www.edackdavid.com/",
+        "name": "EDACK Books",
+        "inLanguage": "en-GB",
+        "publisher": { "@id": "https://www.edackdavid.com/#author" }
+      },
+      {
+        "@type": "Book",
+        "@id": "https://www.edackdavid.com/#lean-heroes",
+        "name": "The Lean Heroes and the Dinner Disaster",
+        "author": { "@id": "https://www.edackdavid.com/#author" },
+        "url": "https://amzn.eu/d/06jhQWxB",
+        "image": "https://www.edackdavid.com/images/lean-heroes-cover-960.webp",
+        "description": "Five woodland friends turn Friday dinner into a disaster, then learn the five steps the world's best factories and hospitals use to fix problems: Define, Measure, Analyse, Improve, Control.",
+        "genre": "Children's fiction",
+        "inLanguage": "en-GB",
+        "bookFormat": "https://schema.org/Paperback",
+        "numberOfPages": 72,
+        "audience": { "@type": "PeopleAudience", "suggestedMinAge": 8, "suggestedMaxAge": 11 }
+      },
+      {
+        "@type": "Book",
+        "@id": "https://www.edackdavid.com/#cookie",
+        "name": "Cookie and the Pantomime of Power",
+        "author": { "@id": "https://www.edackdavid.com/#author" },
+        "url": "https://www.amazon.co.uk/dp/B0HM8G2Q5C",
+        "image": "https://www.edackdavid.com/images/cookie-cover-800.webp",
+        "description": "The whole British government is secretly a pantomime, run by a bored AI called Cookie. Then the system picks a villain for the nation to boo: Glenda Price, a lollipop lady from Gloucester with no smartphone.",
+        "genre": "Satire",
+        "inLanguage": "en-GB",
+        "audio": {
+          "@type": "AudioObject",
+          "@id": "https://www.edackdavid.com/#cookie-chapter-1",
+          "name": "Chapter One of Cookie and the Pantomime of Power",
+          "description": "Chapter One, free to listen to. Narrated with digital voices.",
+          "contentUrl": "https://www.edackdavid.com/audio/cookie-chapter-1.mp3",
+          "encodingFormat": "audio/mpeg",
+          "duration": "PT14M58S",
+          "inLanguage": "en-GB",
+          "isAccessibleForFree": true
+        },
+        "workExample": [
+          { "@type": "Book", "bookFormat": "https://schema.org/Paperback", "url": "https://www.amazon.co.uk/dp/B0HM8G2Q5C" },
+          { "@type": "Book", "bookFormat": "https://schema.org/EBook", "url": "https://www.amazon.co.uk/dp/B0HM7W1HQT" }
+        ]
+      },
+      {
+        "@type": "Book",
+        "@id": "https://www.edackdavid.com/#watchers-guide",
+        "name": "The Watcher's Guide to the End of the World",
+        "author": { "@id": "https://www.edackdavid.com/#author" },
+        "url": "https://www.amazon.co.uk/dp/B0HM815TNF",
+        "image": "https://www.edackdavid.com/images/watchers-guide-cover-800.webp",
+        "description": "In 2019 a council clerk dropped one letter from a man's name, and the national database created a second person. Now EDAK is the most dangerous man in Britain and, technically, about forty million people.",
+        "genre": "Satire",
+        "inLanguage": "en-GB",
+        "audio": {
+          "@type": "AudioObject",
+          "@id": "https://www.edackdavid.com/#watchers-guide-chapter-1",
+          "name": "Chapter One of The Watcher's Guide to the End of the World",
+          "description": "Chapter One, free to listen to. Narrated with digital voices.",
+          "contentUrl": "https://www.edackdavid.com/audio/watchers-guide-chapter-1.mp3",
+          "encodingFormat": "audio/mpeg",
+          "duration": "PT14M36S",
+          "inLanguage": "en-GB",
+          "isAccessibleForFree": true
+        },
+        "workExample": [
+          { "@type": "Book", "bookFormat": "https://schema.org/Paperback", "url": "https://www.amazon.co.uk/dp/B0HM815TNF" },
+          { "@type": "Book", "bookFormat": "https://schema.org/EBook", "url": "https://www.amazon.co.uk/dp/B0HM8BML5X" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Slim header that stays at the top -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#top">
+        <img class="logo-img" src="images/edack-logo-112.webp" srcset="images/edack-logo-112.webp 1x, images/edack-logo-224.webp 2x"
+             width="112" height="114" alt="EDACK Books logo: Fortitude and Reason">
+        <span>EDACK Books</span>
+      </a>
+
+      <!-- On phones this button opens the menu. It works even without JavaScript. -->
+      <button class="menu-toggle" type="button" popovertarget="site-nav" aria-label="Menu">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" popover aria-label="Main">
+        <ul>
+          <li><a href="#books">Books</a></li>
+          <li><a href="#game">Game</a></li>
+          <li><a href="#free-printable">Free printables</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- 1. Hero -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <img class="hero-bg"
+           src="images/hero-artwork-1080.webp"
+           srcset="images/hero-artwork-640.webp 640w, images/hero-artwork-1080.webp 1080w, images/hero-artwork-1600.webp 1600w"
+           sizes="(min-width: 900px) 62vw, 100vw" width="1080" height="1341" fetchpriority="high" decoding="async"
+           alt="Five cartoon woodland friends in martial-arts robes around a messy dinner table in a cosy treehouse, with gravy flying everywhere">
+      <div class="container hero-content">
+        <p class="eyebrow">EDACK Books</p>
+        <h1 id="hero-title">Funny books that make you think.</h1>
+        <p class="hero-sub">Stories for curious kids and grown-ups who've had enough.</p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="#books">For kids: Lean Heroes</a>
+          <a class="btn btn-secondary" href="#satire">For grown-ups: satire</a>
+        </div>
+        <p class="hero-note"><span aria-hidden="true">🎧</span> <a href="#satire">Listen to the first chapters free.</a></p>
+      </div>
+    </section>
+
+    <!-- 2. The Lean Heroes (featured book) -->
+    <section class="section section-kids" id="books" aria-labelledby="lean-heroes-title">
+      <div class="container">
+        <p class="eyebrow">For kids</p>
+        <article class="feature-card reveal">
+          <div class="feature-cover">
+            <img src="images/lean-heroes-cover-480.webp"
+                 srcset="images/lean-heroes-cover-480.webp 480w, images/lean-heroes-cover-960.webp 960w"
+                 sizes="(min-width: 900px) 400px, 80vw" width="480" height="600" loading="lazy" decoding="async"
+                 alt="Cover of The Lean Heroes and the Dinner Disaster by David Edack: five woodland friends around a messy dinner table">
+          </div>
+          <div class="feature-body">
+            <p class="pill">Ages 8 to 11 · 72 colour pages · Paperback</p>
+            <h2 id="lean-heroes-title">The Lean Heroes and the Dinner Disaster</h2>
+            <p>Five woodland friends turn Friday dinner into a disaster, then learn the five steps the world's best factories and hospitals use to fix problems: Define, Measure, Analyse, Improve, Control. A funny story with 'Your Turn' activity pages, puzzles, colouring pages and a Lean Hero certificate.</p>
+
+            <ol class="dmaic" aria-label="The five problem-solving steps in the book">
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+                <strong>Define</strong><span>What's wrong?</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="2" y="8" width="20" height="8" rx="2"/><path d="M6 8v3M10 8v4M14 8v3M18 8v4"/></svg>
+                <strong>Measure</strong><span>Count it</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg>
+                <strong>Analyse</strong><span>Find out why</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3Z"/></svg>
+                <strong>Improve</strong><span>Fix it</span>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
+                <strong>Control</strong><span>Keep it fixed</span>
+              </li>
+            </ol>
+
+            <a class="btn btn-primary btn-large" href="https://amzn.eu/d/06jhQWxB" target="_blank" rel="noopener">
+              Buy on Amazon<span class="visually-hidden"> (opens in a new tab)</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- The free Lean Heroes game. The game itself lives in games/ and is not changed here. -->
+        <article class="game-card reveal" id="game" aria-labelledby="game-title">
+          <img class="game-badge" src="images/badge-192.webp"
+               width="192" height="192" loading="lazy" decoding="async"
+               alt="The Lean Heroes badge: Lauren the Owl, Ethan the Squirrel, Aaron the Monkey, Neo the Badger and Risky the Raccoon">
+          <div class="game-body">
+            <h3 id="game-title"><span aria-hidden="true">🎮</span> Play the free Lean Heroes game</h3>
+            <p>Help the Lean Heroes save dinner, one step at a time. Works on phones and tablets.</p>
+            <a class="btn btn-primary btn-large" href="games/lean-heroes-dinner-disaster.html">Play the game</a>
+          </div>
+        </article>
+
+        <!-- The second free game: SIPOC at the summer fayre. The game lives in games/lean-heroes-summer-fayre.html -->
+        <article class="game-card game-card-fayre reveal" id="game-fayre" aria-labelledby="game-fayre-title">
+          <span class="game-emoji" aria-hidden="true">🍋</span>
+          <div class="game-body">
+            <h3 id="game-fayre-title"><span aria-hidden="true">🍋</span> Play: Lean Heroes at the Summer Fayre (free)</h3>
+            <p>Plan a lemonade stall with the Lean Heroes, run it on fayre day, and learn SIPOC. Works on phones and tablets.</p>
+            <a class="btn btn-primary btn-large" href="games/lean-heroes-summer-fayre.html">Play the fayre game</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 3. Free printables (the Pinterest favourite).
+         The cards come from freebies.json: see HOW-TO-ADD-A-FREEBIE.md.
+         The Yellow Belt card is also written here, so it still shows if JavaScript is off.
+         Keep id="free-printable": Pinterest pins link to it. -->
+    <section class="section section-printable" id="free-printable" aria-labelledby="printable-title">
+      <div class="container">
+        <p class="eyebrow">Free to download</p>
+        <h2 id="printable-title">Free printables</h2>
+        <p class="lead">Print them at home, free.</p>
+        <p class="small">A4 is for the UK and Europe. US Letter is for the USA and Canada.</p>
+
+        <div class="freebie-grid" id="freebie-grid">
+          <article class="freebie-card reveal">
+            <div class="freebie-image">
+              <img src="images/yellow-belt-certificate-640.webp"
+                   srcset="images/yellow-belt-certificate-640.webp 640w, images/yellow-belt-certificate-1280.webp 1280w"
+                   sizes="(min-width: 900px) 560px, 92vw" width="640" height="453" loading="lazy" decoding="async"
+                   alt="Preview of the free Lean Hero Yellow Belt certificate: a Certificate of Achievement with a space for a name, surrounded by the Lean Heroes characters and oak leaves">
+            </div>
+            <div class="freebie-body">
+              <p class="pill">Ages 8 to 11</p>
+              <h3>Lean Hero Yellow Belt certificate</h3>
+              <p>Print it, sign it, stick it on the fridge!</p>
+              <div class="button-row">
+                <a class="btn btn-primary" href="downloads/lean-hero-yellow-belt-certificate-A4.pdf" download>Download A4 (PDF)</a>
+                <a class="btn btn-secondary" href="downloads/lean-hero-yellow-belt-certificate-US-Letter.pdf" download>Download US Letter (PDF)</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. For grown-ups: British satire -->
+    <section class="section section-satire" id="satire" aria-labelledby="satire-title">
+      <div class="container">
+        <p class="eyebrow">For grown-ups</p>
+        <h2 id="satire-title">British satire</h2>
+
+        <div class="book-grid">
+          <article class="book-card reveal">
+            <img class="book-cover" src="images/cookie-cover-400.webp"
+                 srcset="images/cookie-cover-400.webp 400w, images/cookie-cover-800.webp 800w"
+                 sizes="(min-width: 768px) 220px, 60vw" width="400" height="600" loading="lazy" decoding="async"
+                 alt="Cover of Cookie and the Pantomime of Power by EDACK: a lollipop lady's STOP sign in front of the door of Number 10, between red theatre curtains">
+            <div class="book-body">
+              <h3>Cookie and the Pantomime of Power</h3>
+              <p>The whole British government is secretly a pantomime, run by a bored AI called Cookie. Then the system picks a villain for the nation to boo: Glenda Price, a lollipop lady from Gloucester with no smartphone.</p>
+              <div class="listen">
+                <h4 class="listen-title"><span aria-hidden="true">🎧</span> Listen to Chapter One, free</h4>
+                <p class="listen-meta">About 15 minutes · Narrated with digital voices.</p>
+                <!-- preload="none": phones only download the chapter when someone presses play -->
+                <audio controls preload="none" src="audio/cookie-chapter-1.mp3" aria-label="Chapter One of Cookie and the Pantomime of Power">
+                  <a href="audio/cookie-chapter-1.mp3">Download Chapter One (MP3)</a>
+                </audio>
+                <a class="listen-download" href="audio/cookie-chapter-1.mp3" download>Download MP3<span class="visually-hidden"> of Chapter One of Cookie and the Pantomime of Power</span> (9 MB)</a>
+              </div>
+              <p class="see-amazon">See it on Amazon:</p>
+              <div class="button-row">
+                <a class="btn btn-primary" href="https://www.amazon.co.uk/dp/B0HM8G2Q5C" target="_blank" rel="noopener">
+                  Paperback<span class="visually-hidden"> of Cookie and the Pantomime of Power (opens in a new tab)</span>
+                </a>
+                <a class="btn btn-outline" href="https://www.amazon.co.uk/dp/B0HM7W1HQT" target="_blank" rel="noopener">
+                  Kindle<span class="visually-hidden"> edition of Cookie and the Pantomime of Power (opens in a new tab)</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="book-card reveal">
+            <!-- To swap this cover: replace images/watchers-guide-cover.jpg, run npm run images, and update the alt text below. -->
+            <img class="book-cover" src="images/watchers-guide-cover-400.webp"
+                 srcset="images/watchers-guide-cover-400.webp 400w, images/watchers-guide-cover-800.webp 800w"
+                 sizes="(min-width: 768px) 220px, 60vw" width="400" height="600" loading="lazy" decoding="async"
+                 alt="Cover of The Watcher's Guide to the End of the World by EDACK: a large eye with the letter E, and the words Stay calm. Stay compliant. Stay you.">
+            <div class="book-body">
+              <h3>The Watcher's Guide to the End of the World</h3>
+              <p>In 2019 a council clerk dropped one letter from a man's name, and the national database created a second person. Now EDAK is the most dangerous man in Britain and, technically, about forty million people.</p>
+              <div class="listen">
+                <h4 class="listen-title"><span aria-hidden="true">🎧</span> Listen to Chapter One, free</h4>
+                <p class="listen-meta">About 15 minutes · Narrated with digital voices.</p>
+                <!-- preload="none": phones only download the chapter when someone presses play -->
+                <audio controls preload="none" src="audio/watchers-guide-chapter-1.mp3" aria-label="Chapter One of The Watcher's Guide to the End of the World">
+                  <a href="audio/watchers-guide-chapter-1.mp3">Download Chapter One (MP3)</a>
+                </audio>
+                <a class="listen-download" href="audio/watchers-guide-chapter-1.mp3" download>Download MP3<span class="visually-hidden"> of Chapter One of The Watcher's Guide to the End of the World</span> (9 MB)</a>
+              </div>
+              <p class="see-amazon">See it on Amazon:</p>
+              <div class="button-row">
+                <a class="btn btn-primary" href="https://www.amazon.co.uk/dp/B0HM815TNF" target="_blank" rel="noopener">
+                  Paperback<span class="visually-hidden"> of The Watcher's Guide to the End of the World (opens in a new tab)</span>
+                </a>
+                <a class="btn btn-outline" href="https://www.amazon.co.uk/dp/B0HM8BML5X" target="_blank" rel="noopener">
+                  Kindle<span class="visually-hidden"> edition of The Watcher's Guide to the End of the World (opens in a new tab)</span>
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. About -->
+    <section class="section section-about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <figure class="about-figure reveal">
+          <img class="logo-img" src="images/edack-logo-224.webp"
+               srcset="images/edack-logo-224.webp 224w, images/edack-logo-440.webp 440w"
+               sizes="220px" width="224" height="229" loading="lazy" decoding="async"
+               alt="EDACK Books logo: Fortitude and Reason">
+        </figure>
+        <div class="about-text">
+          <p class="eyebrow">About the author</p>
+          <h2 id="about-title">About EDACK</h2>
+          <p>EDACK spent 35 years in operations and logistics and has more than fifty years in martial arts, teaching numerous adults and children and creating two training styles, one for children and one for adults. Now EDACK writes British satire for adults and problem-solving adventures for children.</p>
+          <figure class="taff-note">
+            <img src="images/master-taff-320.webp"
+                 srcset="images/master-taff-320.webp 320w, images/master-taff-640.webp 640w"
+                 sizes="96px" width="320" height="320" loading="lazy" decoding="async"
+                 alt="Master Taff, the wise bearded dragon from the Lean Heroes, in a gold picture frame">
+            <figcaption>
+              <p>EDACK also has a pet bearded dragon called Taff. Or maybe Taff has a pet human.</p>
+              <p class="small">Master Taff, from the Lean Heroes, is inspired by the real Taff.</p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 6. Contact and footer -->
+  <footer class="site-footer" id="contact" aria-labelledby="contact-title">
+    <div class="container footer-inner">
+      <img class="logo-img footer-logo" src="images/edack-logo-112.webp"
+           srcset="images/edack-logo-112.webp 1x, images/edack-logo-224.webp 2x"
+           width="112" height="114" loading="lazy" decoding="async"
+           alt="EDACK Books logo: Fortitude and Reason">
+      <h2 id="contact-title">Say hello</h2>
+      <p>Questions, ideas, or just want to say hello?</p>
+      <a class="btn btn-primary" href="mailto:edack.david@gmail.com">edack.david@gmail.com</a>
+
+      <!-- Social links (Pinterest and TikTok) are taken off the page for now.
+           They are kept inside <template>, which browsers never show.
+           To bring them back: put your real addresses in the links, then delete the
+           <template> and </template> lines (and the TikTok comment lines, for TikTok). -->
+      <template>
+        <ul class="social">
+          <li>
+            <a href="https://www.pinterest.com/YOUR-PINTEREST-NAME/" target="_blank" rel="noopener me" aria-label="EDACK on Pinterest (opens in a new tab)">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+            </a>
+          </li>
+          <!-- TikTok is taken off the page for now. To bring it back, delete this comment's first
+               and last lines and put your real TikTok address in the link.
+          <li>
+            <a href="https://www.tiktok.com/@YOUR-TIKTOK-NAME" target="_blank" rel="noopener me" aria-label="EDACK on TikTok (opens in a new tab)">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+            </a>
+          </li>
+          -->
+        </ul>
+      </template>
+
+      <p class="small">© 2026 EDACK Books</p>
+      <p class="small">This site uses no cookies or tracking.</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Lean Heroes at the Summer Fayre: a free SIPOC game | EDACK Books</title>
+<meta name="description" content="A free game for ages 8 to 11. Plan a lemonade stall with the Lean Heroes, run it on fayre day, and learn SIPOC: Suppliers, Inputs, Process, Outputs, Customers.">
+
+<!-- Safety settings: this game loads nothing from anywhere, sends nothing anywhere, and uses no cookies.
+     Everything it needs is inside this one file. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://www.edackdavid.com/games/lean-heroes-summer-fayre.html">
+<!-- The tab icon is a lemon drawn inside this file, so the browser doesn't need to fetch one -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%8B%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#FFE36E">
+
+<!-- Sharing: what Pinterest, Facebook, WhatsApp and others show -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EDACK Books">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="The Lean Heroes at the Summer Fayre: a free SIPOC game">
+<meta property="og:description" content="Plan a lemonade stall, run it on fayre day, and learn SIPOC. Free, for ages 8 to 11. Works on phones.">
+<meta property="og:url" content="https://www.edackdavid.com/games/lean-heroes-summer-fayre.html">
+<meta property="og:image" content="https://www.edackdavid.com/images/pin-summer-fayre.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1500">
+<meta property="og:image:alt" content="The Lean Heroes at the Summer Fayre: a free lemonade-stall game that teaches SIPOC, for ages 8 to 11">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="pinterest-rich-pin" content="true">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["VideoGame", "LearningResource"],
+  "name": "The Lean Heroes at the Summer Fayre",
+  "url": "https://www.edackdavid.com/games/lean-heroes-summer-fayre.html",
+  "image": "https://www.edackdavid.com/images/pin-summer-fayre.jpg",
+  "description": "A free browser game for ages 8 to 11. Plan a lemonade stall with the Lean Heroes and learn SIPOC: Suppliers, Inputs, Process, Outputs, Customers.",
+  "inLanguage": "en-GB",
+  "isAccessibleForFree": true,
+  "gamePlatform": "Web browser",
+  "playMode": "SinglePlayer",
+  "learningResourceType": "Game",
+  "teaches": "SIPOC (Suppliers, Inputs, Process, Outputs, Customers)",
+  "typicalAgeRange": "8-11",
+  "author": { "@type": "Person", "name": "David Edack", "alternateName": "EDACK", "url": "https://www.edackdavid.com/" },
+  "isPartOf": { "@type": "WebSite", "name": "EDACK Books", "url": "https://www.edackdavid.com/" }
+}
+</script>
+
+<!--
+  ARTWORK PLACEHOLDERS
+  Every character is an emoji for now. Each one sits inside an element with a data-art name:
+    lauren-owl, ethan-squirrel, aaron-monkey, neo-badger, risky-raccoon,
+    master-taff, maisie-lion, archie-hedgehog
+  To use real artwork later: put the picture in /images, then replace the emoji in the
+  CAST list (in the script near the bottom) with the picture's file name.
+  Pictures from /images are allowed by the safety settings above.
+-->
+
+<style>
+  /* ---------- Colours and sizes ---------- */
+  :root {
+    --brown: #3A2210;
+    --muted: #5E4632;
+    --cream: #FDF3DF;
+    --paper: #FFFCF6;
+    --lemon: #FFE36E;
+    --lemon-soft: #FFF6C9;
+    --gold: #FFC850;
+    --coral: #FF6E5A;
+    --coral-soft: #FFE4DE;
+    --green: #2F6B3A;
+    --green-soft: #E3F2E1;
+    --sky: #DFF1FB;
+    --border: rgba(58, 34, 16, 0.18);
+    --shadow: 0 1px 2px rgba(58, 34, 16, 0.08), 0 12px 28px -12px rgba(58, 34, 16, 0.3);
+    --radius: 22px;
+    --radius-sm: 14px;
+    color-scheme: light;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  /* 18px is the smallest text anywhere in this game */
+  html { font-size: 112.5%; -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      repeating-linear-gradient(90deg, rgba(255, 227, 110, 0.35) 0 40px, rgba(255, 252, 246, 0) 40px 80px) top / 100% 18px no-repeat,
+      linear-gradient(180deg, var(--sky) 0, var(--paper) 340px);
+    color: var(--brown);
+    font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  h1, h2, h3 { margin: 0 0 0.4em; line-height: 1.15; }
+  h1 { font-size: clamp(1.9rem, 6vw, 2.8rem); }
+  h2 { font-size: clamp(1.5rem, 4.5vw, 2rem); }
+  h3 { font-size: 1.2rem; }
+  p { margin: 0 0 0.9em; }
+  a { color: var(--green); text-underline-offset: 0.2em; }
+  [hidden] { display: none !important; }
+
+  :focus-visible { outline: 4px solid var(--green); outline-offset: 3px; }
+
+  .visually-hidden {
+    position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+
+  .wrap { width: min(100% - 32px, 1100px); margin-inline: auto; }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 26px 0 8px;
+  }
+  .topbar a { font-weight: 700; }
+
+  /* ---------- Buttons ---------- */
+  button { font: inherit; color: inherit; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.4em;
+    min-height: 52px; padding: 10px 22px;
+    border: 2px solid var(--brown); border-radius: 999px;
+    background: var(--gold); color: var(--brown);
+    font-weight: 700; font-size: 1rem; text-decoration: none; text-align: center;
+    cursor: pointer; box-shadow: 0 3px 0 var(--brown);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .btn:active { transform: translateY(3px); box-shadow: 0 0 0 var(--brown); }
+  .btn-light { background: #fff; }
+  .btn-small { min-height: 48px; padding: 8px 16px; }
+  .btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .button-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+
+  /* ---------- Panels ---------- */
+  .panel {
+    margin: 16px 0; padding: clamp(18px, 4vw, 32px);
+    background: #fff; border: 2px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow);
+  }
+  .stage-label {
+    display: inline-block; margin-bottom: 8px; padding: 4px 14px;
+    background: var(--lemon); border-radius: 999px; font-weight: 700;
+  }
+  .screen-title:focus { outline: none; }
+
+  /* ---------- Characters ---------- */
+  .cast { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; padding: 0; margin: 14px 0 0; list-style: none; }
+  .cast li { display: flex; align-items: center; gap: 10px; padding: 10px; background: var(--cream); border-radius: var(--radius-sm); }
+  .art { display: inline-grid; place-items: center; font-size: 2rem; line-height: 1; }
+  .art img { width: 2.2em; height: 2.2em; object-fit: contain; }
+  .cast .who { font-weight: 700; line-height: 1.2; }
+  .cast .new { display: block; font-weight: 400; color: var(--green); }
+
+  .speech {
+    display: flex; gap: 12px; align-items: flex-start;
+    margin: 14px 0; padding: 14px 16px;
+    background: var(--lemon-soft); border: 2px solid var(--gold); border-radius: var(--radius-sm);
+  }
+  .speech .art { font-size: 2.4rem; flex: none; }
+  .speech p { margin: 0; }
+  .speech p + p { margin-top: 0.5em; }
+  .speech strong { display: block; }
+
+  /* ---------- Stage 1: the plan ---------- */
+  .tray {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    min-height: 70px; margin: 10px 0 0; padding: 12px;
+    background: var(--cream); border: 2px dashed var(--border); border-radius: var(--radius-sm);
+  }
+  .tray-empty { margin: 0; color: var(--muted); }
+
+  .card {
+    display: inline-flex; align-items: center; gap: 8px;
+    min-height: 52px; padding: 8px 14px;
+    background: #fff; border: 2px solid var(--brown); border-radius: 12px;
+    font-weight: 700; text-align: left; line-height: 1.25;
+    cursor: grab; box-shadow: 0 2px 0 var(--brown);
+    user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  }
+  .card .icon { font-size: 1.4rem; flex: none; }
+  .card[aria-pressed="true"] { background: var(--lemon); outline: 4px solid var(--green); outline-offset: 2px; }
+  .card.bounced { border-color: var(--coral); background: var(--coral-soft); }
+  .card.dragging { opacity: 0.35; }
+
+  .ghost {
+    position: fixed; z-index: 50; pointer-events: none;
+    transform: translate(-50%, -60%) rotate(-3deg);
+    box-shadow: var(--shadow);
+  }
+
+  .bins { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
+  @media (min-width: 560px) { .bins { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 980px) { .bins { grid-template-columns: repeat(3, 1fr); } }
+
+  .bin {
+    display: flex; flex-direction: column;
+    background: #fff; border: 3px solid var(--border); border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .bin-target {
+    display: grid; grid-template-columns: auto 1fr; column-gap: 10px; align-items: center;
+    width: 100%; min-height: 64px; padding: 10px 14px;
+    background: var(--lemon-soft); border: 0; border-bottom: 2px solid var(--border);
+    text-align: left; cursor: pointer;
+  }
+  .bin-target .letter {
+    grid-row: span 2; display: grid; place-items: center;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--brown); color: #fff; font-weight: 700; font-size: 1.3rem;
+  }
+  .bin-target .name { font-weight: 700; font-size: 1.1rem; }
+  .bin-target .help { color: var(--muted); }
+  .bin[data-col="X"] .bin-target { background: var(--sky); }
+  .bin[data-col="X"] .letter { background: var(--muted); }
+  .bin-cards { display: flex; flex-wrap: wrap; gap: 8px; min-height: 64px; padding: 10px; }
+  .picking .bin { border-color: var(--gold); }
+  .bin.over, .picking .bin:hover { border-color: var(--green); box-shadow: 0 0 0 3px var(--green-soft); }
+
+  .picked-bar {
+    position: sticky; bottom: 0; z-index: 20;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 14px;
+    margin-top: 14px; padding: 12px 16px;
+    background: var(--brown); color: #fff; border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  }
+  .picked-bar .btn { background: #fff; }
+
+  .taff-list { margin: 0.4em 0 0; padding-left: 1.2em; }
+  .taff-list li + li { margin-top: 0.4em; }
+  .speech .taff-list strong { display: inline; }
+
+  /* ---------- Stage 2: fayre day ---------- */
+  .tally {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0; padding: 0; list-style: none;
+  }
+  @media (min-width: 720px) { .tally { grid-template-columns: repeat(5, 1fr); } }
+  .tally li { padding: 10px 12px; background: var(--cream); border-radius: var(--radius-sm); }
+  .tally .num { display: block; font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
+  .tally .bad .num { color: #B3261E; }
+
+  .rounds { display: flex; gap: 8px; margin: 0 0 12px; padding: 0; list-style: none; }
+  .rounds li { flex: 1; padding: 8px; text-align: center; background: var(--cream); border-radius: 12px; }
+  .rounds li[aria-current="step"] { background: var(--lemon); font-weight: 700; }
+  .rounds li.done { background: var(--green-soft); }
+
+  .queue { display: flex; flex-wrap: wrap; gap: 4px; margin: 12px 0; padding: 0; list-style: none; font-size: 1.7rem; }
+  .queue li { animation: pop 0.35s ease both; }
+  .queue .walked { opacity: 0.45; }
+  @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(0.6); } to { opacity: 1; transform: none; } }
+
+  .events { margin: 0; padding: 0; list-style: none; }
+  .events li { display: flex; gap: 10px; padding: 10px 0; border-top: 1px solid var(--border); }
+  .events li:first-child { border-top: 0; }
+  .events .art { font-size: 1.6rem; flex: none; }
+
+  .choices { display: grid; gap: 12px; margin-top: 12px; }
+  @media (min-width: 720px) { .choices { grid-template-columns: 1fr 1fr; } }
+  .choice {
+    display: flex; align-items: center; gap: 12px;
+    min-height: 72px; padding: 14px 16px;
+    background: #fff; border: 2px solid var(--brown); border-radius: var(--radius-sm);
+    box-shadow: 0 3px 0 var(--brown); text-align: left; font-weight: 700; cursor: pointer;
+  }
+  .choice .art { font-size: 2rem; flex: none; }
+  .choice:hover { background: var(--lemon-soft); }
+
+  /* ---------- Stage 3: results ---------- */
+  .results-grid { display: grid; gap: 12px; }
+  @media (min-width: 720px) { .results-grid { grid-template-columns: repeat(3, 1fr); } }
+  .result { padding: 14px; background: var(--cream); border-radius: var(--radius-sm); }
+  .result .num { display: block; font-size: 2rem; font-weight: 700; line-height: 1.1; }
+  .compare { margin-top: 12px; padding: 12px 14px; background: var(--green-soft); border-radius: var(--radius-sm); }
+
+  .problems { display: grid; gap: 10px; margin-top: 10px; }
+  .problem-btn {
+    min-height: 56px; padding: 10px 16px; text-align: left; font-weight: 700;
+    background: #fff; border: 2px solid var(--brown); border-radius: var(--radius-sm); cursor: pointer;
+  }
+  .problem-btn[aria-pressed="true"] { background: var(--lemon); }
+  .dmaic { margin: 14px 0 0; padding: 0; list-style: none; }
+  .dmaic li { display: grid; grid-template-columns: 48px 1fr; gap: 12px; align-items: start; padding: 10px 0; border-top: 1px solid var(--border); }
+  .dmaic .step {
+    display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+    background: var(--green); color: #fff; font-weight: 700; font-size: 1.2rem;
+  }
+  .dmaic strong { display: block; }
+
+  .field { display: grid; gap: 6px; max-width: 420px; }
+  .field input {
+    min-height: 52px; padding: 8px 14px; font: inherit; font-size: 1.1rem;
+    border: 2px solid var(--brown); border-radius: 12px; background: #fff; color: var(--brown);
+  }
+  .note { color: var(--muted); }
+
+  /* ---------- The certificate ---------- */
+  .certificate {
+    position: relative; margin: 16px 0; padding: clamp(22px, 5vw, 48px);
+    background: #fff; border: 10px double var(--gold); border-radius: 18px;
+    text-align: center; box-shadow: var(--shadow);
+  }
+  .certificate .cert-kicker { font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+  .certificate .cert-title { font-size: clamp(1.8rem, 6vw, 2.8rem); margin: 0.2em 0; }
+  .certificate .cert-name {
+    display: inline-block; min-width: 60%; margin: 0.3em 0 0.4em; padding: 0 0.4em 0.1em;
+    border-bottom: 3px solid var(--brown); font-size: clamp(2rem, 8vw, 3.2rem); font-weight: 700;
+  }
+  .certificate .cert-icons { font-size: 2rem; letter-spacing: 0.15em; }
+  .certificate .cert-sign { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 22px; text-align: left; }
+
+  /* ---------- For grown-ups ---------- */
+  dialog {
+    width: min(100% - 24px, 680px); max-height: calc(100vh - 24px); padding: 0;
+    border: 0; border-radius: var(--radius); color: var(--brown); background: #fff;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  }
+  dialog::backdrop { background: rgba(58, 34, 16, 0.55); }
+  .dialog-inner { padding: clamp(20px, 4vw, 32px); }
+  .dialog-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .feynman { padding: 14px 16px; background: var(--green-soft); border-radius: var(--radius-sm); }
+
+  footer.end { padding: 24px 0 40px; text-align: center; color: var(--muted); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+
+  /* ---------- Printing: only the certificate ---------- */
+  @media print {
+    @page { margin: 12mm; }
+    body { background: #fff; }
+    body > *:not(#certificate-print) { display: none !important; }
+    #certificate-print { display: block !important; }
+    .certificate { box-shadow: none; margin: 0; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="topbar">
+    <a href="../index.html#game">← EDACK Books</a>
+    <button class="btn btn-light btn-small" type="button" id="grownups-open">For grown-ups</button>
+  </header>
+
+  <main id="main">
+
+    <!-- ===== Start screen ===== -->
+    <section class="screen" id="screen-intro" aria-labelledby="intro-title">
+      <div class="panel">
+        <span class="stage-label">Free game · Ages 8 to 11</span>
+        <h1 class="screen-title" id="intro-title" tabindex="-1"><span aria-hidden="true">🍋</span> The Lean Heroes at the Summer Fayre</h1>
+        <p>The village summer fayre is on Saturday. The Lean Heroes want to run a lemonade stall, to raise money for the treehouse dojo.</p>
+        <div class="speech">
+          <span class="art" data-art="master-taff" aria-hidden="true"></span>
+          <p><strong>Master Taff:</strong> "Before you squeeze a single lemon, let's see the whole picture."</p>
+        </div>
+        <h2>Who's helping</h2>
+        <ul class="cast" id="cast"></ul>
+        <h2>How to play</h2>
+        <ol>
+          <li><strong>Plan the stall.</strong> Sort the cards into five columns: Suppliers, Inputs, Process, Outputs, Customers. That's called a SIPOC.</li>
+          <li><strong>Run the stall.</strong> Three busy rounds on fayre day. Make one choice before each.</li>
+          <li><strong>Fix it next time.</strong> See what went wrong, and how the five DMAIC steps would fix it.</li>
+        </ol>
+        <div class="button-row">
+          <button class="btn" type="button" id="start-btn">Start planning</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Stage 1: plan the stall ===== -->
+    <section class="screen" id="screen-plan" aria-labelledby="plan-title" hidden>
+      <div class="panel">
+        <span class="stage-label">Stage 1 of 3</span>
+        <h2 class="screen-title" id="plan-title" tabindex="-1">Plan the stall</h2>
+        <p>Lauren has spread the cards on the table. Put each one in the right column.</p>
+        <p><strong>Tap a card, then tap a column.</strong> Or drag it there. Tap a card in a column to move it again.</p>
+        <p class="note">Some cards are tricky. If a card matters but isn't S, I, P, O or C, put it in "Doesn't fit".</p>
+
+        <h3 id="tray-title">Cards to sort</h3>
+        <div class="tray" id="tray" role="group" aria-labelledby="tray-title"></div>
+
+        <div class="bins" id="bins"></div>
+
+        <div class="picked-bar" id="picked-bar" hidden>
+          <span id="picked-text" aria-live="polite"></span>
+          <button class="btn btn-small" type="button" id="unpick-btn">Cancel</button>
+        </div>
+
+        <div class="button-row">
+          <button class="btn" type="button" id="check-btn">Ask Master Taff to check</button>
+        </div>
+
+        <div id="taff-check" class="speech" hidden tabindex="-1">
+          <span class="art" data-art="master-taff" aria-hidden="true"></span>
+          <div id="taff-check-body"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Stage 2: fayre day ===== -->
+    <section class="screen" id="screen-fayre" aria-labelledby="fayre-title" hidden>
+      <div class="panel">
+        <span class="stage-label">Stage 2 of 3</span>
+        <h2 class="screen-title" id="fayre-title" tabindex="-1">Fayre day</h2>
+        <ol class="rounds" id="rounds" aria-label="Rounds"></ol>
+
+        <h3>Ethan's tally <span aria-hidden="true">🐿️</span></h3>
+        <ul class="tally" id="tally"></ul>
+      </div>
+
+      <div class="panel" id="round-panel" aria-live="polite"></div>
+    </section>
+
+    <!-- ===== Stage 3: results ===== -->
+    <section class="screen" id="screen-results" aria-labelledby="results-title" hidden>
+      <div class="panel">
+        <span class="stage-label">Stage 3 of 3</span>
+        <h2 class="screen-title" id="results-title" tabindex="-1">How did the stall do?</h2>
+        <div class="results-grid" id="results-grid"></div>
+        <div class="compare" id="compare" hidden></div>
+        <div class="speech">
+          <span class="art" data-art="master-taff" aria-hidden="true"></span>
+          <p id="verdict"></p>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>What would you fix next time?</h2>
+        <p>Pick one problem. See how the five DMAIC steps from the Lean Heroes book would fix it.</p>
+        <div class="problems" id="problems" role="group" aria-label="Problems from fayre day"></div>
+        <div id="fix" aria-live="polite"></div>
+        <div class="button-row">
+          <button class="btn" type="button" id="replay-btn">Play again with a better plan</button>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Your certificate</h2>
+        <p>Type your first name to make a "Lean Hero Fayre Champion" certificate you can print.</p>
+        <div class="field">
+          <label for="cert-name">Your first name</label>
+          <input id="cert-name" type="text" maxlength="24" autocomplete="off" autocapitalize="words" spellcheck="false" enterkeyhint="done">
+        </div>
+        <p class="note">Your name stays on this screen. It is never sent or saved anywhere.</p>
+        <div class="button-row">
+          <button class="btn" type="button" id="cert-btn">Make my certificate</button>
+        </div>
+        <div id="cert-area" hidden>
+          <div class="button-row">
+            <button class="btn" type="button" id="print-btn">Print or save as PDF</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Want more Lean Heroes?</h2>
+        <p>The whole story of the Dinner Disaster is in the book, with puzzles, colouring pages and a Lean Hero certificate.</p>
+        <p><a href="../index.html#books">Find out about the Lean Heroes book</a></p>
+        <p><span aria-hidden="true">🦁</span> Book 2, starring Maisie, is on its way.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="end">
+    <p>© 2026 EDACK Books · This game uses no cookies or tracking.</p>
+  </footer>
+</div>
+
+<!-- The certificate for printing. Filled in on this device only, and emptied when you play again. -->
+<div id="certificate-print" hidden></div>
+
+<!-- ===== For grown-ups ===== -->
+<dialog id="grownups" aria-labelledby="grownups-title">
+  <div class="dialog-inner">
+    <div class="dialog-head">
+      <h2 id="grownups-title">For grown-ups</h2>
+      <button class="btn btn-light btn-small" type="button" id="grownups-close">Close</button>
+    </div>
+
+    <h3>SIPOC in one minute</h3>
+    <p>SIPOC is a one-page picture of a process, in five columns:</p>
+    <ul>
+      <li><strong>Suppliers:</strong> who gives us what we need.</li>
+      <li><strong>Inputs:</strong> what we need.</li>
+      <li><strong>Process:</strong> the main steps we do.</li>
+      <li><strong>Outputs:</strong> what comes out.</li>
+      <li><strong>Customers:</strong> who gets it.</li>
+    </ul>
+    <p>You fill it in before you change anything. Then everyone agrees what the process is, where it starts and where it ends.</p>
+
+    <h3>Why real businesses use it</h3>
+    <p>Improvement teams often draw a SIPOC at the start of a project, in the Define step of DMAIC. It shows the edges of the problem. It also catches the forgotten input or the forgotten customer before they cause trouble. It works the same for a factory line, a hospital ward or a school lunch queue.</p>
+
+    <div class="feynman">
+      <h3>The Feynman check</h3>
+      <p>Can you explain the five letters to your child using your own kitchen? Then you've got it.</p>
+      <p>Try breakfast: who supplies the bread, what goes in, the steps, what comes out, and who eats it.</p>
+    </div>
+
+    <h3>Elements of Lean</h3>
+    <p>Learn Lean by teaching it to your child. <a href="../elements-of-lean/bonus-sipoc/">Read the bonus lesson: SIPOC</a></p>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  'use strict';
+
+  // ---------- The characters (swap the emoji for artwork later) ----------
+  const CAST = {
+    'lauren-owl':      { name: 'Lauren the Owl', art: '🦉' },
+    'ethan-squirrel':  { name: 'Ethan the Squirrel', art: '🐿️' },
+    'aaron-monkey':    { name: 'Aaron the Monkey', art: '🐒' },
+    'neo-badger':      { name: 'Neo the Badger', art: '🦡' },
+    'risky-raccoon':   { name: 'Risky the Raccoon', art: '🦝' },
+    'master-taff':     { name: 'Master Taff', art: '🦎' },
+    'maisie-lion':     { name: 'Maisie the lion cub', art: '🦁', isNew: 'New friend: very sweet tooth' },
+    'archie-hedgehog': { name: 'Archie the Hedgehog', art: '🦔', isNew: "New friend: Maisie's best friend" }
+  };
+
+  // ---------- Stage 1: the five columns and the cards ----------
+  const COLUMNS = [
+    { id: 'S', name: 'Suppliers', help: 'Who gives us what we need' },
+    { id: 'I', name: 'Inputs', help: 'What we need to make and sell lemonade' },
+    { id: 'P', name: 'Process', help: 'The steps we do' },
+    { id: 'O', name: 'Outputs', help: 'What the stall makes' },
+    { id: 'C', name: 'Customers', help: 'Who gets what we make' },
+    { id: 'X', name: "Doesn't fit", letter: '?', help: "It matters, but it isn't S, I, P, O or C" }
+  ];
+
+  const CARDS = [
+    { id: 'shop', icon: '🏪', text: 'The corner shop', col: 'S', why: 'The corner shop sells us the sugar and the cups, so it is a Supplier.' },
+    { id: 'grandma', icon: '🌳', text: "Grandma's lemon tree", col: 'S', why: "Grandma's tree gives us the lemons, so it is a Supplier." },
+    { id: 'committee', icon: '🎪', text: 'The fayre committee (lends the table)', col: 'S', why: 'The committee lends us the table, so they are a Supplier.' },
+    { id: 'lemons', icon: '🍋', text: 'Lemons', col: 'I', why: 'Lemons are something we need to make lemonade, so they are an Input.' },
+    { id: 'sugar', icon: '🥄', text: 'Sugar', col: 'I', why: 'Sugar is something we need to make lemonade, so it is an Input.' },
+    { id: 'ice', icon: '🧊', text: 'Ice', col: 'I', why: 'Ice is something we need to keep the lemonade cold, so it is an Input.' },
+    { id: 'cups', icon: '🥤', text: 'Paper cups', col: 'I', why: 'Cups are something we need to sell lemonade, so they are an Input.' },
+    { id: 'tin', icon: '💷', text: 'A cash tin with change', col: 'I', why: 'The cash tin is something we need to sell lemonade, so it is an Input.' },
+    { id: 'squeeze', icon: '🥣', text: 'Squeeze and mix', col: 'P', why: 'Squeezing and mixing is a step we do, so it is part of the Process.' },
+    { id: 'pour', icon: '🫖', text: 'Pour and sell', col: 'P', why: 'Pouring and selling is a step we do, so it is part of the Process.' },
+    { id: 'tidy', icon: '🧹', text: 'Tidy up', col: 'P', why: 'Tidying up is a step we do, so it is part of the Process.' },
+    { id: 'drinks', icon: '🍹', text: 'Cups of lemonade', col: 'O', why: 'Cups of lemonade are what the stall makes, so they are an Output.' },
+    { id: 'money', icon: '💰', text: 'Money for the dojo', col: 'O', why: 'The money raised is something the stall makes, so it is an Output.' },
+    { id: 'vicar', icon: '⛪', text: 'The vicar', col: 'C', why: 'The vicar buys our lemonade, so he is a Customer.' },
+    { id: 'footballers', icon: '⚽', text: 'Thirsty footballers', col: 'C', why: 'The footballers buy our lemonade, so they are Customers.' },
+    { id: 'jones', icon: '🎂', text: 'Mrs Jones from the cake stall', col: 'C', why: 'Mrs Jones buys our lemonade, so she is a Customer.' },
+    { id: 'weather', icon: '☀️', text: 'The sunny weather', col: 'X', why: "The sun matters, but nobody gives it to us and we don't make it. It changes how many customers come, so we plan for it." },
+    { id: 'tasting', icon: '🦁', text: 'Maisie tasting the lemonade', col: 'X', why: "Maisie tasting the lemonade isn't a Process step. It uses up lemonade and nobody pays. That's waste!" }
+  ];
+  const cardById = Object.fromEntries(CARDS.map((c) => [c.id, c]));
+  const columnById = Object.fromEntries(COLUMNS.map((c) => [c.id, c]));
+
+  // ---------- Stage 2: the rounds ----------
+  const PRICE = 0.5; // 50p a cup
+  const START_STOCK = 28; // cups made before the fayre
+  const JUG = 10; // cups in one extra jug
+  const ROUNDS = [
+    { id: 'morning', name: 'Morning', icon: '🌤️', demand: 8,
+      scene: 'The gates open. The vicar and the dog walkers wander over.' },
+    { id: 'lunch', name: 'Lunchtime', icon: '☀️', demand: 16, sunny: true,
+      scene: 'The sun is blazing. The footballers have just finished their match, and they are thirsty.' },
+    { id: 'afternoon', name: 'Afternoon', icon: '⛅', demand: 8,
+      scene: 'Things calm down. Mrs Jones pops over from the cake stall.' }
+  ];
+  const FACES = ['👩', '👨', '👧', '👦', '👵', '👴', '🧑', '👱'];
+
+  // ---------- Game state (kept in memory only, never saved) ----------
+  let placed = {};
+  let selected = null;
+  let planMistakes = 0;
+  let day = null;
+  let lastRun = null;
+
+  const $ = (id) => document.getElementById(id);
+
+  function el(tag, attrs, children) {
+    const node = document.createElement(tag);
+    for (const [key, value] of Object.entries(attrs || {})) {
+      if (key === 'text') node.textContent = value;
+      else if (key === 'className') node.className = value;
+      else node.setAttribute(key, value);
+    }
+    for (const child of [].concat(children || [])) {
+      node.append(child);
+    }
+    return node;
+  }
+
+  function art(key, extraClass) {
+    const span = el('span', { className: 'art' + (extraClass ? ' ' + extraClass : ''), 'data-art': key, 'aria-hidden': 'true' });
+    fillArt(span);
+    return span;
+  }
+
+  // An emoji, or a picture if the CAST entry is a file name
+  function fillArt(span) {
+    const who = CAST[span.dataset.art];
+    if (!who) return;
+    if (/\.(png|webp|jpe?g|svg)$/i.test(who.art)) {
+      span.replaceChildren(el('img', { src: '../images/' + who.art, alt: '' }));
+    } else {
+      span.textContent = who.art;
+    }
+  }
+
+  const money = (pounds) => '£' + pounds.toFixed(2);
+  const plural = (n, one, many) => n + ' ' + (n === 1 ? one : many);
+
+  function show(screenId) {
+    document.querySelectorAll('.screen').forEach((s) => { s.hidden = s.id !== screenId; });
+    window.scrollTo(0, 0);
+    const title = $(screenId).querySelector('.screen-title');
+    if (title) title.focus({ preventScroll: true });
+  }
+
+  // ---------- Start screen ----------
+  function buildCast() {
+    const list = $('cast');
+    for (const [key, who] of Object.entries(CAST)) {
+      const label = el('span', { className: 'who', text: who.name });
+      if (who.isNew) label.append(el('span', { className: 'new', text: who.isNew }));
+      list.append(el('li', {}, [art(key), label]));
+    }
+    document.querySelectorAll('[data-art]').forEach(fillArt);
+  }
+
+  // ---------- Stage 1: sorting the cards ----------
+  function cardButton(card) {
+    const where = placed[card.id] ? ' (in ' + columnById[placed[card.id]].name + ')' : '';
+    const button = el('button', {
+      type: 'button', className: 'card', 'data-id': card.id,
+      'aria-pressed': String(selected === card.id),
+      'aria-label': card.text + where
+    }, [el('span', { className: 'icon', 'aria-hidden': 'true', text: card.icon }), el('span', { text: card.text })]);
+    if (bounced.has(card.id)) button.classList.add('bounced');
+    return button;
+  }
+
+  let bounced = new Set();
+
+  function renderPlan() {
+    const tray = $('tray');
+    const left = CARDS.filter((c) => !placed[c.id]);
+    tray.replaceChildren(...(left.length ? left.map(cardButton) : [el('p', { className: 'tray-empty', text: 'All the cards are sorted.' })]));
+
+    const bins = $('bins');
+    bins.replaceChildren(...COLUMNS.map((col) => {
+      const inside = CARDS.filter((c) => placed[c.id] === col.id);
+      const target = el('button', {
+        type: 'button', className: 'bin-target', 'data-col': col.id,
+        'aria-label': selected ? 'Put ' + cardById[selected].text + ' in ' + col.name : col.name + ': ' + col.help + '. ' + plural(inside.length, 'card', 'cards') + '.'
+      }, [
+        el('span', { className: 'letter', 'aria-hidden': 'true', text: col.letter || col.id }),
+        el('span', { className: 'name', text: col.name }),
+        el('span', { className: 'help', text: col.help })
+      ]);
+      return el('div', { className: 'bin', 'data-col': col.id }, [target, el('div', { className: 'bin-cards' }, inside.map(cardButton))]);
+    }));
+
+    $('main').classList.toggle('picking', Boolean(selected));
+    $('picked-bar').hidden = !selected;
+    $('picked-text').textContent = selected ? 'Picked: ' + cardById[selected].text + '. Now tap a column.' : '';
+  }
+
+  // Picking a card moves the focus to the first column, so keyboard players
+  // don't have to tab past all the other cards
+  function pick(id) {
+    selected = selected === id ? null : id;
+    renderPlan();
+    const firstColumn = document.querySelector('.bin-target');
+    if (selected && firstColumn) firstColumn.focus({ preventScroll: true });
+    else focusCard(id);
+  }
+
+  function focusCard(id) {
+    const button = document.querySelector('.card[data-id="' + id + '"]');
+    if (button) button.focus({ preventScroll: true });
+  }
+
+  function place(id, colId) {
+    placed[id] = colId;
+    bounced.delete(id);
+    selected = null;
+    renderPlan();
+    // Then on to the next card in the pile (or the check button when the pile is empty)
+    const nextCard = document.querySelector('#tray .card');
+    (nextCard || $('check-btn')).focus({ preventScroll: true });
+    $('picked-text').textContent = cardById[id].text + ' is now in ' + columnById[colId].name + '.';
+  }
+
+  $('screen-plan').addEventListener('click', (event) => {
+    if (suppressClick) return;
+    const card = event.target.closest('.card');
+    if (card) { pick(card.dataset.id); return; }
+    const target = event.target.closest('.bin-target');
+    if (target && selected) place(selected, target.dataset.col);
+  });
+
+  $('unpick-btn').addEventListener('click', () => {
+    const id = selected;
+    selected = null;
+    renderPlan();
+    if (id) focusCard(id);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && selected && !$('screen-plan').hidden) {
+      const id = selected;
+      selected = null;
+      renderPlan();
+      focusCard(id);
+    }
+  });
+
+  // Dragging: a mouse drags straight away; a finger holds the card for a moment first,
+  // so you can still scroll the page by swiping over the cards.
+  let drag = null;
+  let suppressClick = false;
+
+  function binUnder(x, y) {
+    const hit = document.elementFromPoint(x, y);
+    return hit ? hit.closest('.bin') : null;
+  }
+
+  function beginDrag() {
+    if (!drag) return;
+    drag.active = true;
+    drag.el.classList.add('dragging');
+    drag.ghost = drag.el.cloneNode(true);
+    drag.ghost.classList.add('ghost');
+    drag.ghost.removeAttribute('id');
+    drag.ghost.setAttribute('aria-hidden', 'true');
+    document.body.append(drag.ghost);
+    moveDrag(drag.x, drag.y);
+    if (navigator.vibrate && drag.type !== 'mouse') navigator.vibrate(15);
+    requestAnimationFrame(edgeScroll);
+  }
+
+  // Holding a card near the top or bottom of the screen scrolls the page,
+  // so on a phone you can drag a card down to the columns
+  function edgeScroll() {
+    if (!drag || !drag.active) return;
+    const edge = 70;
+    if (drag.lastY > window.innerHeight - edge) window.scrollBy(0, 12);
+    else if (drag.lastY < edge) window.scrollBy(0, -12);
+    requestAnimationFrame(edgeScroll);
+  }
+
+  function moveDrag(x, y) {
+    drag.lastY = y;
+    drag.ghost.style.left = x + 'px';
+    drag.ghost.style.top = y + 'px';
+    const bin = binUnder(x, y);
+    document.querySelectorAll('.bin.over').forEach((b) => { if (b !== bin) b.classList.remove('over'); });
+    if (bin) bin.classList.add('over');
+  }
+
+  function endDrag(x, y) {
+    if (!drag) return;
+    clearTimeout(drag.timer);
+    if (drag.active) {
+      const bin = binUnder(x, y);
+      drag.ghost.remove();
+      drag.el.classList.remove('dragging');
+      document.querySelectorAll('.bin.over').forEach((b) => b.classList.remove('over'));
+      suppressClick = true;
+      setTimeout(() => { suppressClick = false; }, 50);
+      if (bin) place(drag.id, bin.dataset.col);
+    }
+    drag = null;
+  }
+
+  $('screen-plan').addEventListener('pointerdown', (event) => {
+    const card = event.target.closest('.card');
+    if (!card || event.button > 0) return;
+    drag = { id: card.dataset.id, el: card, x: event.clientX, y: event.clientY, type: event.pointerType, active: false, timer: null };
+    if (event.pointerType !== 'mouse') {
+      drag.timer = setTimeout(beginDrag, 300);
+    }
+  });
+
+  document.addEventListener('pointermove', (event) => {
+    if (!drag) return;
+    if (!drag.active) {
+      if (Math.hypot(event.clientX - drag.x, event.clientY - drag.y) > 8) {
+        if (drag.type === 'mouse') { beginDrag(); moveDrag(event.clientX, event.clientY); } else { clearTimeout(drag.timer); drag = null; }
+      }
+      return;
+    }
+    moveDrag(event.clientX, event.clientY);
+  });
+
+  document.addEventListener('pointerup', (event) => endDrag(event.clientX, event.clientY));
+  document.addEventListener('pointercancel', () => { if (drag && !drag.active) { clearTimeout(drag.timer); drag = null; } });
+
+  // While a finger is dragging a card, stop the page from scrolling
+  document.addEventListener('touchmove', (event) => {
+    if (drag && drag.active) {
+      event.preventDefault();
+      const touch = event.touches[0];
+      moveDrag(touch.clientX, touch.clientY);
+    }
+  }, { passive: false });
+  document.addEventListener('touchend', (event) => {
+    if (drag && drag.active) {
+      const touch = event.changedTouches[0];
+      endDrag(touch.clientX, touch.clientY);
+    }
+  });
+  $('screen-plan').addEventListener('contextmenu', (event) => {
+    if (event.target.closest('.card')) event.preventDefault();
+  });
+
+  // ---------- Master Taff checks the plan ----------
+  function checkPlan() {
+    selected = null;
+    const wrong = CARDS.filter((c) => placed[c.id] && placed[c.id] !== c.col);
+    const missing = CARDS.filter((c) => !placed[c.id] && c.col !== 'X');
+    const body = $('taff-check-body');
+    body.replaceChildren();
+
+    if (Object.keys(placed).length === 0) {
+      body.append(el('p', { text: '"Start by putting a card in a column. Then I\'ll take a look."' }));
+    } else if (wrong.length) {
+      planMistakes += wrong.length;
+      wrong.forEach((c) => { delete placed[c.id]; bounced.add(c.id); });
+      body.append(
+        el('p', { text: '"Good try! ' + (wrong.length === 1 ? 'One card needs' : wrong.length + ' cards need') + ' a new home. ' + (wrong.length === 1 ? "It's" : "They're") + ' back in the pile."' }),
+        el('ul', { className: 'taff-list' }, wrong.map((c) => el('li', {}, [el('strong', { text: c.text + ': ' }), c.why])))
+      );
+    } else if (missing.length) {
+      const missingInputs = missing.filter((c) => c.col === 'I');
+      body.append(el('p', { text: '"Everything you have placed is right. Well done!"' }));
+      body.append(el('p', { text: 'Still in the pile: ' + missing.map((c) => c.text).join(', ') + '.' }));
+      if (missingInputs.length) {
+        body.append(el('p', { text: '"Remember: if it isn\'t in Inputs, it stays at home on fayre day."' }));
+      }
+      body.append(el('div', { className: 'button-row' }, [
+        el('button', { type: 'button', className: 'btn btn-light', 'data-action': 'keep', text: 'Keep planning' }),
+        el('button', { type: 'button', className: 'btn', 'data-action': 'go', text: 'Go to the fayre anyway' })
+      ]));
+    } else {
+      const lauren = el('p', { text: '"A perfect plan! Lauren writes it on the stall plan. Off to the fayre!"' });
+      body.append(lauren, el('div', { className: 'button-row' }, [
+        el('button', { type: 'button', className: 'btn', 'data-action': 'go', text: 'Go to the fayre' })
+      ]));
+    }
+
+    renderPlan();
+    const box = $('taff-check');
+    box.hidden = false;
+    box.scrollIntoView({ block: 'nearest' });
+    box.focus({ preventScroll: true });
+  }
+
+  $('check-btn').addEventListener('click', checkPlan);
+  $('taff-check').addEventListener('click', (event) => {
+    const action = event.target.closest('[data-action]');
+    if (!action) return;
+    if (action.dataset.action === 'go') startFayre();
+    else { $('taff-check').hidden = true; $('check-btn').focus(); }
+  });
+
+  // ---------- Stage 2: fayre day ----------
+  function startFayre() {
+    const packed = (id) => placed[id] === 'I';
+    day = {
+      round: 0,
+      stock: START_STOCK,
+      sugarJugs: 1, // enough sugar for one extra jug
+      helper: false,
+      tidyAsYouGo: false,
+      maisie: 'table',
+      sold: 0, walked: 0, waste: 0, leftover: 0,
+      forgotStart: ['lemons', 'sugar', 'cups'].filter((id) => !packed(id)),
+      noIce: !packed('ice'),
+      noTin: !packed('tin'),
+      noTidy: placed.tidy !== 'P',
+      problems: new Set(),
+      phase: 'choose'
+    };
+    show('screen-fayre');
+    renderTally();
+    renderRound();
+  }
+
+  function renderTally() {
+    const items = [
+      ['Cups sold', day.sold, ''],
+      ['Money raised', money(day.sold * PRICE), ''],
+      ['Walked off', day.walked, 'bad'],
+      ['Wasted', day.waste, 'bad'],
+      ['Lemonade left', day.stock, '']
+    ];
+    $('tally').replaceChildren(...items.map(([label, value, kind]) =>
+      el('li', { className: kind }, [el('span', { className: 'num', text: String(value) }), label])));
+
+    $('rounds').replaceChildren(...ROUNDS.map((r, i) => {
+      const li = el('li', { text: r.name });
+      if (i < day.round || (i === day.round && day.phase === 'report')) li.classList.add('done');
+      if (i === day.round) li.setAttribute('aria-current', 'step');
+      return li;
+    }));
+  }
+
+  function choicesFor(round) {
+    if (round.id === 'morning') {
+      return {
+        who: 'maisie-lion',
+        question: 'Maisie wants to help. Where should she go?',
+        options: [
+          { art: 'maisie-lion', text: 'Behind the table, next to the jugs', apply: () => { day.maisie = 'table'; } },
+          { art: 'archie-hedgehog', text: 'In charge of the big sign, with Archie', apply: () => { day.maisie = 'sign'; } }
+        ]
+      };
+    }
+    if (round.id === 'lunch') {
+      return {
+        who: 'ethan-squirrel',
+        question: 'Ethan says lunchtime will be the busiest time of the day. What do you do?',
+        options: [
+          { art: 'neo-badger', text: 'Make an extra jug of lemonade before lunch', apply: makeJug },
+          { art: 'archie-hedgehog', text: 'Ask Archie to take the money while Neo pours', apply: () => { day.helper = true; } }
+        ]
+      };
+    }
+    return {
+      who: 'lauren-owl',
+      question: 'Last round! What now?',
+      options: [
+        { art: 'neo-badger', text: 'Make an extra jug of lemonade', apply: makeJug },
+        day.helper
+          ? { art: 'risky-raccoon', text: 'Give Risky a new job: collect the empty cups as you go', apply: () => { day.tidyAsYouGo = true; } }
+          : { art: 'archie-hedgehog', text: 'Ask Archie to take the money while Neo pours', apply: () => { day.helper = true; } }
+      ]
+    };
+  }
+
+  function makeJug() {
+    if (day.sugarJugs > 0) {
+      day.sugarJugs -= 1;
+      day.stock += JUG;
+      day.notes.push(['neo-badger', 'Neo makes an extra jug: ' + JUG + ' more cups.']);
+    } else {
+      day.problems.add('sugar');
+      day.notes.push(['neo-badger', 'Oh no, the sugar has run out! The new jug is too sour to sell, so no extra lemonade.']);
+    }
+  }
+
+  function renderRound() {
+    const round = ROUNDS[day.round];
+    const panel = $('round-panel');
+    const choice = choicesFor(round);
+    panel.replaceChildren(
+      el('h3', { text: round.icon + ' ' + round.name + ' (round ' + (day.round + 1) + ' of 3)' }),
+      el('p', { text: round.scene }),
+      el('div', { className: 'speech' }, [art(choice.who), el('p', {}, [el('strong', { text: CAST[choice.who].name + ':' }), choice.question])]),
+      el('div', { className: 'choices' }, choice.options.map((opt, i) =>
+        el('button', { type: 'button', className: 'choice', 'data-choice': String(i) }, [art(opt.art), el('span', { text: opt.text })])))
+    );
+    panel.querySelectorAll('.choice').forEach((button, i) => {
+      button.addEventListener('click', () => playRound(choice.options[i]));
+    });
+    renderTally();
+  }
+
+  function playRound(option) {
+    const round = ROUNDS[day.round];
+    day.notes = [];
+    option.apply();
+
+    const demand = round.demand + (day.maisie === 'sign' ? 2 : 0);
+    let served = 0;
+    const startTrip = round.id === 'morning' && day.forgotStart.length > 0;
+
+    if (day.maisie === 'sign' && round.id === 'morning') {
+      day.notes.push(['maisie-lion', 'Maisie and Archie wave the big sign. A few extra people come over!']);
+    }
+
+    if (startTrip) {
+      const names = day.forgotStart.map((id) => cardById[id].text.toLowerCase());
+      day.problems.add('forgot');
+      day.notes.push(['archie-hedgehog', 'Oh no! Nobody packed the ' + listWords(names) + '. Archie runs to fetch them, and the stall isn\'t ready all morning.']);
+    } else {
+      if (day.maisie === 'table' && day.stock > 0) {
+        const tasted = Math.min(2, day.stock);
+        day.stock -= tasted;
+        day.waste += tasted;
+        day.problems.add('maisie');
+        day.notes.push(['maisie-lion', 'Maisie keeps "testing" the lemonade. ' + plural(tasted, 'cup', 'cups') + ' gone, and nobody paid!']);
+      }
+
+      let capacity = day.helper ? 18 : 10;
+      if (!day.helper && demand > capacity && day.stock > 0) {
+        const spilt = Math.min(3, day.stock);
+        capacity += 2;
+        day.stock -= spilt;
+        day.waste += spilt;
+        day.problems.add('risky');
+        day.notes.push(['risky-raccoon', 'The queue is too long for Neo on his own. Risky tries a shortcut: he pours without looking and spills ' + spilt + ' cups.']);
+      }
+      if (day.helper) {
+        day.notes.push(['archie-hedgehog', 'Archie takes the money while Neo pours. The queue moves fast.']);
+      }
+
+      let turnedAway = 0;
+      if (round.sunny && day.noIce) {
+        turnedAway += 4;
+        day.problems.add('forgot');
+        day.notes.push(['ethan-squirrel', 'No ice! The lemonade is warm, and 4 hot footballers say "no thanks".']);
+      }
+      if (day.noTin) {
+        turnedAway += 2;
+        day.problems.add('forgot');
+        day.notes.push(['ethan-squirrel', 'No cash tin, so there is no change. 2 customers with big coins walk off.']);
+      }
+
+      const wanting = Math.max(0, demand - turnedAway);
+      served = Math.min(wanting, capacity, day.stock);
+      if (served < wanting) {
+        if (served === day.stock) {
+          day.problems.add('ranOut');
+          day.notes.push(['lauren-owl', 'We\'ve run out of lemonade! ' + plural(wanting - served, 'customer goes', 'customers go') + ' away thirsty.']);
+        } else {
+          day.problems.add('queue');
+          day.notes.push(['lauren-owl', 'The queue is too long. ' + plural(wanting - served, 'person gives', 'people give') + ' up and walk off.']);
+        }
+      }
+      day.stock -= served;
+    }
+
+    day.sold += served;
+    day.walked += demand - served;
+
+    // Leftover lemonade at the end of the day is poured away
+    if (round.id === 'afternoon') {
+      if (day.stock > 0) {
+        day.leftover = day.stock;
+        day.waste += day.stock;
+        day.problems.add('leftover');
+        day.notes.push(['neo-badger', plural(day.stock, 'cup is', 'cups are') + ' left over at the end, and have to be poured away.']);
+        day.stock = 0;
+      }
+      if (day.noTidy && !day.tidyAsYouGo) {
+        day.problems.add('messy');
+        day.notes.push(['master-taff', 'Nobody planned to tidy up. The pitch is left sticky, and the fayre committee frowns.']);
+      } else {
+        day.notes.push(['risky-raccoon', day.tidyAsYouGo ? 'Risky collects the cups as he goes. The pitch is spotless!' : 'Everyone tidies up. The pitch is spotless.']);
+      }
+    }
+
+    day.phase = 'report';
+    renderReport(round, demand, served);
+  }
+
+  function listWords(words) {
+    if (words.length < 2) return words.join('');
+    return words.slice(0, -1).join(', ') + ' and ' + words[words.length - 1];
+  }
+
+  function renderReport(round, demand, served) {
+    const panel = $('round-panel');
+    const queue = el('ul', { className: 'queue', 'aria-hidden': 'true' });
+    for (let i = 0; i < demand; i++) {
+      const happy = i < served;
+      const li = el('li', { className: happy ? '' : 'walked', text: happy ? FACES[i % FACES.length] : '🚶' });
+      li.style.animationDelay = (i * 0.06) + 's';
+      queue.append(li);
+    }
+    const isLast = day.round === ROUNDS.length - 1;
+    const next = el('button', { type: 'button', className: 'btn', text: isLast ? 'See how we did' : 'Next round' });
+    next.addEventListener('click', () => {
+      if (isLast) { showResults(); return; }
+      day.round += 1;
+      day.phase = 'choose';
+      renderRound();
+      panel.querySelector('.choice').focus();
+    });
+
+    panel.replaceChildren(
+      el('h3', { text: round.icon + ' ' + round.name + ': how it went' }),
+      el('p', { text: plural(demand, 'customer', 'customers') + ' came. ' + served + ' bought lemonade.' }),
+      queue,
+      el('ul', { className: 'events' }, day.notes.map(([who, text]) => el('li', {}, [art(who), el('span', { text: text })]))),
+      el('div', { className: 'button-row' }, [next])
+    );
+    renderTally();
+    next.focus({ preventScroll: true });
+  }
+
+  // ---------- Stage 3: results ----------
+  const FIXES = {
+    forgot: {
+      label: 'We forgot something we needed',
+      steps: [
+        'Lauren writes it in one sentence: "We lost customers because we forgot things we needed."',
+        'Ethan counts what it cost: every customer who came while we weren\'t ready.',
+        'Aaron climbs the Why Ladder: we forgot because nobody checked the Inputs column before we left.',
+        'Neo tests one change: tick off every Input card as it goes into the box.',
+        'Master Taff tapes the Inputs list to the lid of the box, so it gets checked every time.'
+      ]
+    },
+    ranOut: {
+      label: 'We ran out of lemonade',
+      steps: [
+        'Lauren writes it in one sentence: "We ran out of lemonade when the most people wanted it."',
+        'Ethan counts the customers in each round. Lunchtime was the busiest.',
+        'Aaron climbs the Why Ladder: we ran out because nobody planned for the sunny lunchtime rush.',
+        'Neo tests one change: have enough ready before lunch, and count again.',
+        'Master Taff adds "busy at lunchtime" to the stall plan, so next year\'s team knows.'
+      ]
+    },
+    queue: {
+      label: 'The queue was too long',
+      steps: [
+        'Lauren writes it in one sentence: "People walked off because the queue was too slow."',
+        'Ethan times one customer. Neo was pouring and taking money on his own.',
+        'Aaron climbs the Why Ladder: the queue was slow because one person did two jobs.',
+        'Neo tests one change: Archie takes the money while Neo pours.',
+        'Master Taff writes the two jobs on the stall plan, with a name next to each.'
+      ]
+    },
+    maisie: {
+      label: 'Maisie kept "testing" the lemonade',
+      steps: [
+        'Lauren writes it in one sentence: "Lemonade went missing and nobody paid for it."',
+        'Ethan counts the cups that disappeared from the table.',
+        'Aaron climbs the Why Ladder: Maisie isn\'t naughty. She was put right next to the jugs, and she loves sweet things.',
+        'Neo tests one change: give Maisie a job she loves, in charge of the sign.',
+        'Master Taff reminds everyone of the Lean Hero Pledge: "I will never blame a person when I can fix a process."'
+      ]
+    },
+    risky: {
+      label: "Risky's shortcut spilt lemonade",
+      steps: [
+        'Lauren writes it in one sentence: "We spilt lemonade when the queue got long."',
+        'Ethan counts the spilt cups.',
+        'Aaron climbs the Why Ladder: Risky rushed because the queue was too long for one pourer.',
+        'Neo tests one change: share the jobs, so nobody has to rush.',
+        'Master Taff gives Risky a proper job, just like in the book: shortcuts are often waste in disguise.'
+      ]
+    },
+    sugar: {
+      label: 'The sugar ran out',
+      steps: [
+        'Lauren writes it in one sentence: "We couldn\'t make more lemonade because the sugar ran out."',
+        'Ethan counts how much sugar one jug needs.',
+        'Aaron climbs the Why Ladder: we didn\'t know how many jugs we would need, so we didn\'t buy enough.',
+        'Neo tests one change: work out the jugs first, then buy the sugar.',
+        'Master Taff writes "sugar for every jug" on the Inputs list.'
+      ]
+    },
+    leftover: {
+      label: 'Lemonade was left over and poured away',
+      steps: [
+        'Lauren writes it in one sentence: "We made lemonade that nobody bought."',
+        'Ethan counts the cups poured away at the end.',
+        'Aaron climbs the Why Ladder: we made it too early, before we knew who wanted it.',
+        'Neo tests one change: make the last jug only if the queue is still there.',
+        'Master Taff: "Make it when the customer wants it. That\'s called pull."'
+      ]
+    },
+    messy: {
+      label: 'Nobody tidied up',
+      steps: [
+        'Lauren writes it in one sentence: "We left the pitch messy."',
+        'Ethan counts the sticky cups left on the grass.',
+        'Aaron climbs the Why Ladder: tidying up wasn\'t a step in our Process, so nobody did it.',
+        'Neo tests one change: add "Tidy up" to the Process column, with a name next to it.',
+        'Master Taff: "A clean pitch is an Output too. Plan for it."'
+      ]
+    },
+    none: {
+      label: 'Make a great stall even better',
+      steps: [
+        'Lauren writes it in one sentence: "Next year, raise even more for the dojo."',
+        'Ethan counts this year\'s customers in each round, to plan next year.',
+        'Aaron climbs the Why Ladder: what stopped us selling more? Only the number of customers.',
+        'Neo tests one change: a second stall next to the football pitch.',
+        'Master Taff keeps this year\'s SIPOC safe, ready to start from next year.'
+      ]
+    }
+  };
+  const DMAIC = [['D', 'Define'], ['M', 'Measure'], ['A', 'Analyse'], ['I', 'Improve'], ['C', 'Control']];
+
+  function showResults() {
+    const money_ = day.sold * PRICE;
+    const happy = day.sold;
+    const items = [
+      [day.sold, 'cups sold'],
+      [money(money_), 'raised for the treehouse dojo'],
+      [happy, 'happy customers'],
+      [day.walked, 'walked off'],
+      [day.waste, 'cups wasted'],
+      [day.noTidy && !day.tidyAsYouGo ? 'No' : 'Yes', 'clean pitch']
+    ];
+    $('results-grid').replaceChildren(...items.map(([num, label]) =>
+      el('div', { className: 'result' }, [el('span', { className: 'num', text: String(num) }), label])));
+
+    let verdict;
+    if (day.walked === 0 && day.waste === 0) verdict = '"A champion stall! Every customer got a cold lemonade, and nothing was wasted."';
+    else if (day.walked <= 4 && day.waste <= 4) verdict = '"A very good day. A few small problems. Let\'s fix one, and it will be even better."';
+    else verdict = '"We raised money, and we learned a lot. Now let\'s fix one problem at a time."';
+    $('verdict').textContent = 'Master Taff: ' + verdict;
+
+    const compare = $('compare');
+    if (lastRun) {
+      compare.hidden = false;
+      compare.textContent = 'Last time: ' + lastRun.sold + ' cups sold, ' + lastRun.walked + ' walked off, ' + lastRun.waste + ' wasted. ' +
+        'This time: ' + day.sold + ' sold, ' + day.walked + ' walked off, ' + day.waste + ' wasted.';
+    } else {
+      compare.hidden = true;
+    }
+    lastRun = { sold: day.sold, walked: day.walked, waste: day.waste };
+
+    const keys = day.problems.size ? [...day.problems] : ['none'];
+    $('problems').replaceChildren(...keys.map((key) =>
+      el('button', { type: 'button', className: 'problem-btn', 'aria-pressed': 'false', 'data-problem': key, text: FIXES[key].label })));
+    $('fix').replaceChildren();
+    show('screen-results');
+  }
+
+  $('problems').addEventListener('click', (event) => {
+    const button = event.target.closest('[data-problem]');
+    if (!button) return;
+    document.querySelectorAll('.problem-btn').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+    const fix = FIXES[button.dataset.problem];
+    $('fix').replaceChildren(
+      el('ol', { className: 'dmaic', 'aria-label': 'How DMAIC fixes it: ' + fix.label },
+        DMAIC.map(([letter, word], i) => el('li', {}, [
+          el('span', { className: 'step', 'aria-hidden': 'true', text: letter }),
+          el('span', {}, [el('strong', { text: word }), fix.steps[i]])
+        ])))
+    );
+  });
+
+  // ---------- Play again ----------
+  $('replay-btn').addEventListener('click', () => {
+    placed = {};
+    selected = null;
+    bounced = new Set();
+    planMistakes = 0;
+    clearCertificate();
+    $('taff-check').hidden = true;
+    renderPlan();
+    show('screen-plan');
+  });
+
+  // ---------- The certificate (the name never leaves this screen) ----------
+  function clearCertificate() {
+    $('cert-name').value = '';
+    $('cert-area').hidden = true;
+    $('certificate-print').replaceChildren();
+    $('certificate-print').hidden = true;
+  }
+
+  function buildCertificate(name) {
+    const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    return el('div', { className: 'certificate' }, [
+      el('p', { className: 'cert-icons', 'aria-hidden': 'true', text: '🍋 🦉 🐿️ 🐒 🦡 🦝 🍋' }),
+      el('p', { className: 'cert-kicker', text: 'Lean Heroes · Summer Fayre' }),
+      el('h2', { className: 'cert-title', text: 'Lean Hero Fayre Champion' }),
+      el('p', { text: 'This certificate is awarded to' }),
+      el('p', { className: 'cert-name', text: name }),
+      el('p', { text: 'for planning a lemonade stall with SIPOC (Suppliers, Inputs, Process, Outputs, Customers) and running it at the Summer Fayre.' }),
+      el('p', { text: day ? 'Cups sold: ' + day.sold + ' · Raised for the treehouse dojo: ' + money(day.sold * PRICE) : '' }),
+      el('div', { className: 'cert-sign' }, [
+        el('span', { text: 'Master Taff, Sensei 🦎' }),
+        el('span', { text: today })
+      ]),
+      el('p', { className: 'note', text: 'EDACK Books · www.edackdavid.com' })
+    ]);
+  }
+
+  $('cert-btn').addEventListener('click', () => {
+    const name = $('cert-name').value.replace(/\s+/g, ' ').trim();
+    if (!name) {
+      $('cert-name').focus();
+      return;
+    }
+    const area = $('cert-area');
+    area.querySelectorAll('.certificate').forEach((c) => c.remove());
+    area.prepend(buildCertificate(name));
+    area.hidden = false;
+    $('certificate-print').replaceChildren(buildCertificate(name));
+    $('print-btn').focus();
+  });
+
+  $('cert-name').addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') $('cert-btn').click();
+  });
+
+  $('print-btn').addEventListener('click', () => window.print());
+
+  // ---------- For grown-ups ----------
+  const dialog = $('grownups');
+  $('grownups-open').addEventListener('click', () => {
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  });
+  $('grownups-close').addEventListener('click', () => {
+    if (typeof dialog.close === 'function') dialog.close();
+    else dialog.removeAttribute('open');
+    $('grownups-open').focus();
+  });
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  // ---------- Start ----------
+  $('start-btn').addEventListener('click', () => {
+    renderPlan();
+    show('screen-plan');
+  });
+
+  buildCast();
+})();
+</script>
+</body>
+</html>

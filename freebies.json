@@ -1,0 +1,13 @@
+[
+  {
+    "title": "Lean Hero Yellow Belt certificate",
+    "description": "Print it, sign it, stick it on the fridge!",
+    "image": "images/yellow-belt-certificate-640.webp",
+    "alt": "Preview of the free Lean Hero Yellow Belt certificate: a Certificate of Achievement with a space for a name, surrounded by the Lean Heroes characters and oak leaves",
+    "ages": "Ages 8 to 11",
+    "downloads": [
+      { "label": "Download A4 (PDF)", "file": "downloads/lean-hero-yellow-belt-certificate-A4.pdf" },
+      { "label": "Download US Letter (PDF)", "file": "downloads/lean-hero-yellow-belt-certificate-US-Letter.pdf" }
+    ]
+  }
+]

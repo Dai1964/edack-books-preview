@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Lean Heroes: Dinner Disaster! Free game | EDACK Books</title>
+<style>
+  /* ---------- Reset & base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; min-height: 100%; }
+  body {
+    background: linear-gradient(135deg, #FFF4D6 0%, #FFE8E8 50%, #E8FBF5 100%);
+    background-attachment: fixed;
+    font-family: "Trebuchet MS", "Comic Sans MS", "Segoe UI", sans-serif;
+    color: #2D2A32;
+    padding-bottom: 40px;
+  }
+  .hidden { display: none !important; }
+
+  /* ---------- Keyframes ---------- */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes confetti-fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ---------- Progress tracker ---------- */
+  #tracker {
+    position: sticky; top: 0; z-index: 50;
+    display: none; align-items: center; justify-content: center;
+    gap: 6px; background: #fff; padding: 10px 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08); flex-wrap: wrap;
+  }
+  .tracker-step { display: flex; flex-direction: column; align-items: center; opacity: 0.45; transition: .3s; }
+  .tracker-step .step-icon {
+    font-size: 28px; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: #f1f1f1; border: 3px solid transparent;
+  }
+  .tracker-step .step-label { font-size: 11px; font-weight: bold; margin-top: 2px; }
+  .tracker-step.current { opacity: 1; }
+  .tracker-step.current .step-icon { border-color: #FFD93D; animation: pulse 1.5s infinite; background: #FFF7D6; }
+  .tracker-step.done { opacity: 1; }
+  .tracker-step.done .step-icon { background: #D9F7E3; border-color: #6BCB77; }
+  .tracker-line { width: 24px; height: 4px; background: #e0e0e0; border-radius: 2px; }
+
+  /* ---------- Screens ---------- */
+  .screen { display: none; max-width: 900px; margin: 0 auto; padding: 20px 16px 60px; animation: fadeIn .4s ease; }
+  .screen.active { display: block; }
+
+  /* ---------- Title screen ---------- */
+  .title-card { text-align: center; background: #fff; border-radius: 28px; padding: 32px 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+  h1 { font-size: clamp(28px, 6vw, 42px); margin: 0 0 6px; color: #FF6B6B; }
+  h1 .subtitle { display: block; font-size: clamp(18px, 4vw, 26px); color: #4ECDC4; }
+  .tagline { font-size: 16px; line-height: 1.5; max-width: 600px; margin: 12px auto 20px; }
+  .hero-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin: 20px 0; }
+  .hero-chip { display: flex; flex-direction: column; align-items: center; font-size: 34px; background: #FFF8E1; border-radius: 16px; padding: 10px 14px; min-width: 70px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+  .hero-chip span { font-size: 12px; font-weight: bold; margin-top: 4px; color: #555; }
+  .hero-chip.villain { background: #FFE1E1; }
+  .name-label { display: block; margin: 20px 0 10px; font-weight: bold; }
+  .name-label input {
+    display: block; margin: 8px auto 0; padding: 10px 14px; font-size: 16px; border-radius: 12px;
+    border: 2px solid #ddd; width: 220px; max-width: 80%; text-align: center; font-family: inherit;
+  }
+  .meet-heroes { margin-top: 20px; text-align: left; background: #FBFBFB; border-radius: 16px; padding: 16px; }
+  .meet-heroes ul { list-style: none; padding: 0; margin: 0 0 12px; }
+  .meet-heroes li { margin-bottom: 10px; font-size: 15px; }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    font-family: inherit; font-size: 16px; font-weight: bold; padding: 12px 22px; border: none;
+    border-radius: 16px; cursor: pointer; box-shadow: 0 4px 0 rgba(0,0,0,0.15); transition: transform .15s; margin: 6px;
+  }
+  .btn:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: #FF6B6B; color: #fff; }
+  .btn-secondary { background: #4ECDC4; color: #fff; }
+  .btn-danger { background: #E84855; color: #fff; }
+  .btn-big { font-size: 20px; padding: 16px 30px; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; transform: none; }
+
+  /* ---------- Hero banner (stage screens) ---------- */
+  .hero-banner { display: flex; gap: 16px; align-items: center; background: #fff; border-radius: 20px; padding: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 18px; }
+  .hero-icon { font-size: 56px; position: relative; flex-shrink: 0; animation: float 3s ease-in-out infinite; }
+  .hero-icon .cue { position: absolute; bottom: -6px; right: -14px; font-size: 20px; }
+  .speech-bubble { background: #F3FBFF; border-radius: 16px; padding: 12px 16px; font-size: 15px; line-height: 1.5; }
+
+  .stage-progress { text-align: center; font-weight: bold; margin-bottom: 10px; font-size: 17px; color: #555; }
+  .problem-banner { background: #2D2A32; color: #fff; padding: 14px 18px; border-radius: 14px; font-weight: bold; text-align: center; margin-bottom: 16px; }
+
+  /* ---------- Define: tile grid ---------- */
+  .tile-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+  .tile {
+    background: #fff; border: 3px solid #eee; border-radius: 16px; padding: 14px 8px; display: flex;
+    flex-direction: column; align-items: center; gap: 6px; cursor: pointer; font-family: inherit;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06); transition: .15s;
+  }
+  .tile:hover { transform: translateY(-3px); border-color: #4ECDC4; }
+  .tile-emoji { font-size: 34px; }
+  .tile-label { font-size: 12px; text-align: center; font-weight: bold; color: #555; }
+  .tile.found { background: #E4FBEA; border-color: #6BCB77; }
+  .tile.shake { animation: shake .5s; border-color: #FF6B6B; }
+
+  .success-panel { margin-top: 20px; text-align: center; background: #EAFBF0; border: 2px dashed #6BCB77; border-radius: 18px; padding: 20px; }
+
+  /* ---------- Measure ---------- */
+  .stopwatch-display {
+    font-size: 48px; font-weight: bold; text-align: center; background: #2D2A32; color: #6BCB77;
+    border-radius: 16px; padding: 14px; letter-spacing: 2px; margin: 14px 0; font-family: "Courier New", monospace;
+  }
+  .button-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .feedback-text { text-align: center; font-weight: bold; min-height: 24px; margin-top: 10px; }
+  .timer-badge { text-align: center; font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+  .dish-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 340px; margin: 0 auto 16px; }
+  .dish-tile { background: #fff; border-radius: 14px; font-size: 36px; text-align: center; padding: 14px 0; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+  .option-btn { background: #FFD93D; color: #2D2A32; min-width: 46px; }
+
+  /* ---------- Matching engine (Analyze / Improve) ---------- */
+  .slots-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .match-slot { background: #fff; border: 3px dashed #ccc; border-radius: 16px; padding: 12px 16px; cursor: pointer; transition: .15s; }
+  .match-slot .slot-prompt { font-weight: bold; margin-bottom: 4px; color: #555; font-size: 14px; }
+  .match-slot .slot-content { font-size: 15px; color: #999; }
+  .match-slot.filled { border-style: solid; border-color: #6BCB77; background: #EAFBF0; }
+  .match-slot.filled .slot-content { color: #2D2A32; font-weight: bold; }
+  .match-slot.shake { animation: shake .5s; border-color: #FF6B6B; }
+  .card-pool { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 14px; background: #F8F8F8; border-radius: 16px; }
+  .match-card {
+    background: #4ECDC4; color: #fff; border: none; border-radius: 14px; padding: 10px 16px; font-weight: bold;
+    cursor: pointer; font-family: inherit; font-size: 14px; box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+  }
+  .match-card.selected { outline: 4px solid #FFD93D; transform: translateY(-2px); }
+  .match-card.used { opacity: 0.25; pointer-events: none; }
+
+  /* ---------- Quiz (Control) ---------- */
+  .quiz-progress { text-align: center; font-weight: bold; color: #888; margin-bottom: 8px; }
+  .options-grid { display: flex; flex-direction: column; gap: 10px; max-width: 560px; margin: 0 auto; }
+  .quiz-option { background: #fff; border: 3px solid #eee; text-align: left; font-size: 15px; padding: 14px 18px; }
+  .quiz-option:hover { border-color: #4ECDC4; }
+  .correct-flash { background: #6BCB77 !important; color: #fff; border-color: #6BCB77 !important; }
+
+  /* ---------- Toast ---------- */
+  #toast {
+    position: fixed; left: 50%; bottom: -80px; transform: translateX(-50%); background: #2D2A32; color: #fff;
+    padding: 12px 20px; border-radius: 14px; font-weight: bold; max-width: 90%; text-align: center;
+    transition: bottom .3s ease; z-index: 200; box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  }
+  #toast.show { bottom: 20px; }
+  #toast.success { background: #2E8B57; }
+  #toast.warn { background: #B35400; }
+
+  /* ---------- Confetti ---------- */
+  #confetti-layer { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 150; }
+  .confetti-piece { position: absolute; top: -20px; width: 10px; height: 14px; border-radius: 2px; animation: confetti-fall linear forwards; }
+
+  /* ---------- Sound toggle ---------- */
+  #sound-toggle {
+    position: fixed; top: 10px; right: 10px; z-index: 210; background: #fff; border: none; border-radius: 50%;
+    width: 44px; height: 44px; font-size: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); cursor: pointer;
+  }
+
+  /* ---------- Certificate ---------- */
+  .certificate { background: #FFFBEA; border: 6px double #FFD93D; border-radius: 20px; padding: 30px 20px; text-align: center; max-width: 520px; margin: 20px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+  .cert-header { font-size: 22px; font-weight: bold; color: #B8860B; margin-bottom: 10px; }
+  #cert-name { font-size: 32px; color: #FF6B6B; margin: 10px 0; }
+  .cert-heroes { font-size: 32px; margin: 16px 0; }
+  .cert-signature { font-style: italic; margin-top: 14px; }
+  .cycle-reminder { text-align: center; max-width: 600px; margin: 20px auto; font-size: 16px; background: #fff; padding: 16px; border-radius: 16px; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 600px) {
+    .hero-banner { flex-direction: column; text-align: center; }
+    .tracker-step .step-label { display: none; }
+    .tracker-step .step-icon { width: 36px; height: 36px; font-size: 22px; }
+    .tile-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+    .stopwatch-display { font-size: 36px; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<button id="sound-toggle" title="Toggle sound">🔊</button>
+<div id="confetti-layer"></div>
+<div id="toast"></div>
+
+<header id="tracker">
+  <div class="tracker-step" data-stage="define"><div class="step-icon">🦉</div><div class="step-label">Define</div></div>
+  <div class="tracker-line"></div>
+  <div class="tracker-step" data-stage="measure"><div class="step-icon">🐿️</div><div class="step-label">Measure</div></div>
+  <div class="tracker-line"></div>
+  <div class="tracker-step" data-stage="analyze"><div class="step-icon">🐒</div><div class="step-label">Analyse</div></div>
+  <div class="tracker-line"></div>
+  <div class="tracker-step" data-stage="improve"><div class="step-icon">🦡</div><div class="step-label">Improve</div></div>
+  <div class="tracker-line"></div>
+  <div class="tracker-step" data-stage="control"><div class="step-icon">🐉</div><div class="step-label">Control</div></div>
+</header>
+
+<!-- ================= TITLE SCREEN ================= -->
+<section id="screen-title" class="screen active">
+  <div class="title-card">
+    <h1>🍽️ Lean Heroes <span class="subtitle">Dinner Disaster!</span></h1>
+    <p class="tagline">
+      Risky Raccoon caused chaos in the kitchen — orders were late, dishes got burnt, and guests were upset! 😱<br>
+      Team up with the Lean Heroes and use the <strong>DMAIC</strong> way to save dinner!
+    </p>
+    <div class="hero-strip">
+      <div class="hero-chip">🦉<span>Lauren</span></div>
+      <div class="hero-chip">🐿️<span>Ethan</span></div>
+      <div class="hero-chip">🐒<span>Aaron</span></div>
+      <div class="hero-chip">🦡<span>Neo</span></div>
+      <div class="hero-chip">🐉<span>M. Taff</span></div>
+      <div class="hero-chip villain">🦝<span>Risky!</span></div>
+    </div>
+    <label class="name-label">What's your name, Lean Hero?
+      <input type="text" id="name-input" maxlength="16" placeholder="Type your name (optional)">
+    </label>
+    <div>
+      <button class="btn btn-primary btn-big" onclick="startGame()">🚀 Start the Adventure!</button>
+      <button class="btn btn-secondary" onclick="toggleMeetHeroes()">👀 Meet the Heroes</button>
+    </div>
+    <div id="meet-heroes" class="meet-heroes hidden">
+      <ul>
+        <li>🦉👓🎓 <strong>Lauren the Owl</strong> — wise and sharp-eyed, she helps us <strong>Define</strong> the real problem.</li>
+        <li>🐿️⏱️📝 <strong>Ethan the Squirrel</strong> — quick and curious, he helps us <strong>Measure</strong> what's really happening.</li>
+        <li>🐒🔍 <strong>Aaron the Monkey</strong> — a clever detective who helps us <strong>Analyse</strong> and find the root cause.</li>
+        <li>🦡🧰🔧 <strong>Neo the Badger</strong> — a handy builder who helps us <strong>Improve</strong> the process with the right tools.</li>
+        <li>🐉📜✅ <strong>Master Taff the Dragon</strong> — the wise mentor who helps us <strong>Control</strong> and keep the good changes forever.</li>
+        <li>🦝🗑️⚠️ <strong>Risky Raccoon</strong> — uh oh! He loves shortcuts and messy habits, and he leaves waste (called <strong>Muda</strong>) everywhere he goes!</li>
+      </ul>
+      <button class="btn btn-secondary" onclick="toggleMeetHeroes()">Close</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DEFINE SCREEN ================= -->
+<section id="screen-define" class="screen">
+  <div class="hero-banner">
+    <div class="hero-icon">🦉<span class="cue">👓🎓</span></div>
+    <div class="speech-bubble">
+      <strong>Lauren the Owl:</strong> "Hoo-hoo! Before we can fix dinner, we must <em>Define</em> the problem. Waste (we call it <strong>Muda</strong>) is hiding all over this kitchen — tap every step that WASTES time or effort. Leave the helpful steps alone!"
+    </div>
+  </div>
+  <div class="stage-progress">Found: <span id="define-found">0</span> / 8 wasteful steps</div>
+  <div id="define-grid" class="tile-grid"></div>
+  <div id="define-success" class="success-panel hidden">
+    <p>🎉 Great detective work, <span class="player-name">Hero</span>! You <strong>Defined</strong> the problem: too much waste is slowing down dinner!</p>
+    <button class="btn btn-primary" onclick="goToStage('measure')">Continue to Measure ➡️</button>
+  </div>
+</section>
+
+<!-- ================= MEASURE SCREEN ================= -->
+<section id="screen-measure" class="screen">
+  <div class="hero-banner">
+    <div class="hero-icon">🐿️<span class="cue">⏱️📝</span></div>
+    <div class="speech-bubble">
+      <strong>Ethan the Squirrel:</strong> "Now we <em>Measure</em>! I can't fix what I can't count. Let's practice measuring time, then count some defects!"
+    </div>
+  </div>
+
+  <div id="measure-part1">
+    <h3>⏱️ Stop the Clock!</h3>
+    <p>I'm thinking of a secret time between 2.5 and 4.5 seconds. Press Start, then hit Stop as close to my secret time as you can!</p>
+    <div class="stopwatch-display" id="sw-display">0.00</div>
+    <div class="button-row">
+      <button class="btn btn-primary" id="sw-start-btn" onclick="startStopwatch()">▶️ Start</button>
+      <button class="btn btn-danger" id="sw-stop-btn" onclick="stopStopwatch()" disabled>⏹️ Stop</button>
+    </div>
+    <p id="sw-feedback" class="feedback-text"></p>
+    <div style="text-align:center;">
+      <button class="btn btn-secondary hidden" id="sw-next-btn" onclick="showMeasurePart2()">Next: Count the Defects ➡️</button>
+    </div>
+  </div>
+
+  <div id="measure-part2" class="hidden">
+    <h3>🔥 Count the Defects!</h3>
+    <p id="defect-instructions">Look closely! Memorize the burnt dishes...</p>
+    <div class="timer-badge">⏲️ <span id="defect-timer">4</span>s</div>
+    <div id="defect-grid" class="dish-grid"></div>
+    <div id="defect-answer-area" class="button-row hidden"></div>
+    <p id="defect-feedback" class="feedback-text"></p>
+    <div id="measure-success" class="success-panel hidden">
+      <p>🎉 Nice measuring, <span class="player-name">Hero</span>! Now we have real data to work with.</p>
+      <button class="btn btn-primary" onclick="goToStage('analyze')">Continue to Analyse ➡️</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ANALYZE SCREEN ================= -->
+<section id="screen-analyze" class="screen">
+  <div class="hero-banner">
+    <div class="hero-icon">🐒<span class="cue">🔍</span></div>
+    <div class="speech-bubble">
+      <strong>Aaron the Monkey:</strong> "Time to <em>Analyse</em>! Let's ask 'Why?' five times to find the ROOT cause. Tap an answer card, then tap the Why box it belongs to!"
+    </div>
+  </div>
+  <div class="problem-banner" id="analyze-problem"></div>
+  <div id="analyze-slots" class="slots-list"></div>
+  <div id="analyze-pool" class="card-pool"></div>
+  <div id="analyze-success" class="success-panel hidden">
+    <p>🔍 Root Cause Found, <span class="player-name">Hero</span>! There was no process for saving lessons learned. That's what we need to fix!</p>
+    <button class="btn btn-primary" onclick="goToStage('improve')">Continue to Improve ➡️</button>
+  </div>
+</section>
+
+<!-- ================= IMPROVE SCREEN ================= -->
+<section id="screen-improve" class="screen">
+  <div class="hero-banner">
+    <div class="hero-icon">🦡<span class="cue">🧰🔧</span></div>
+    <div class="speech-bubble">
+      <strong>Neo the Badger:</strong> "Let's <em>Improve</em>! Grab the right tool from my toolbox and fix each part of the process. Watch out — Risky Raccoon snuck in some silly shortcuts!"
+    </div>
+  </div>
+  <div class="problem-banner" id="improve-problem"></div>
+  <div id="improve-slots" class="slots-list"></div>
+  <div id="improve-pool" class="card-pool"></div>
+  <div id="improve-success" class="success-panel hidden">
+    <p>🛠️ Amazing work, <span class="player-name">Hero</span>! The kitchen process is fixed and better than ever!</p>
+    <button class="btn btn-primary" onclick="goToStage('control')">Continue to Control ➡️</button>
+  </div>
+</section>
+
+<!-- ================= CONTROL SCREEN ================= -->
+<section id="screen-control" class="screen">
+  <div class="hero-banner">
+    <div class="hero-icon">🐉<span class="cue">📜✅</span></div>
+    <div class="speech-bubble">
+      <strong>Master Taff Dragon:</strong> "Well done, young heroes! Now we must <em>Control</em> — make sure these good changes STICK forever. Answer wisely!"
+    </div>
+  </div>
+  <div class="quiz-progress" id="quiz-progress"></div>
+  <div class="problem-banner" id="quiz-question"></div>
+  <div id="quiz-options" class="options-grid"></div>
+</section>
+
+<!-- ================= COMPLETE SCREEN ================= -->
+<section id="screen-complete" class="screen">
+  <div class="certificate">
+    <div class="cert-header">🏆 Certificate of Lean Heroism 🏆</div>
+    <p>This certifies that</p>
+    <h2 id="cert-name">Hero</h2>
+    <p>has completed the <strong>DMAIC</strong> cycle and saved dinner from disaster!</p>
+    <div class="cert-heroes">🦉 🐿️ 🐒 🦡 🐉</div>
+    <p class="cert-date" id="cert-date"></p>
+    <p class="cert-signature">— Master Taff Dragon 🐉</p>
+  </div>
+  <p class="cycle-reminder">🔄 Remember: Lean isn't a one-time fix — it's a never-ending circle of <strong>D</strong>efine, <strong>M</strong>easure, <strong>A</strong>nalyse, <strong>I</strong>mprove, and <strong>C</strong>ontrol! Every time the kitchen finds a new problem, the circle starts again.</p>
+  <div style="text-align:center;">
+    <button class="btn btn-primary btn-big" onclick="resetGame()">🔁 Play Again</button>
+  </div>
+  <div style="text-align:center;margin-top:18px;">
+    <p><strong>Want the whole story?</strong> Read <em>The Lean Heroes and the Dinner Disaster</em>, with puzzles, colouring pages and your own Yellow Belt certificate.</p>
+    <a class="btn btn-primary btn-big" href="https://amzn.eu/d/06jhQWxB" target="_blank" rel="noopener">📚 Get the book on Amazon</a>
+    <p style="margin-top:12px;"><a href="../">← Back to EDACK Books</a></p>
+  </div>
+</section>
+
+<script>
+/* =========================================================
+   GAME STATE
+   ========================================================= */
+const state = {
+  currentStage: null,
+  playerName: 'Hero',
+  soundOn: true,
+  completed: { define: false, measure: false, analyze: false, improve: false, control: false }
+};
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function showToast(msg, type) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.className = 'toast show ' + (type || '');
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => toast.classList.remove('show'), 2400);
+}
+
+function updatePlayerNameDisplays() {
+  document.querySelectorAll('.player-name').forEach(el => el.textContent = state.playerName);
+}
+
+/* =========================================================
+   SOUND (generated tones, no external audio files)
+   ========================================================= */
+let audioCtx = null;
+function getAudioCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+function beep(freq, duration, type) {
+  if (!state.soundOn) return;
+  try {
+    const ctx = getAudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.value = freq;
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration / 1000);
+    osc.start();
+    osc.stop(ctx.currentTime + duration / 1000);
+  } catch (e) { /* audio not available, fail silently */ }
+}
+function playSuccess() { beep(523.25, 120); setTimeout(() => beep(659.25, 120), 120); setTimeout(() => beep(784, 200), 240); }
+function playOops() { beep(180, 220, 'sawtooth'); }
+function playComplete() { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => beep(f, 180), i * 150)); }
+
+document.getElementById('sound-toggle').addEventListener('click', () => {
+  state.soundOn = !state.soundOn;
+  document.getElementById('sound-toggle').textContent = state.soundOn ? '🔊' : '🔇';
+});
+
+/* =========================================================
+   CONFETTI
+   ========================================================= */
+function spawnConfetti(count) {
+  const layer = document.getElementById('confetti-layer');
+  const colors = ['#FF6B6B', '#4ECDC4', '#FFD93D', '#6BCB77', '#C780FA', '#FF922B'];
+  for (let i = 0; i < (count || 30); i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+    piece.style.animationDelay = (Math.random() * 0.3) + 's';
+    layer.appendChild(piece);
+    setTimeout(() => piece.remove(), 4000);
+  }
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tracker = document.getElementById('tracker');
+  tracker.style.display = (id === 'screen-title' || id === 'screen-complete') ? 'none' : 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateTracker(stageKey) {
+  document.querySelectorAll('.tracker-step').forEach(el => {
+    const s = el.dataset.stage;
+    el.classList.remove('current', 'done');
+    if (state.completed[s]) el.classList.add('done');
+    if (s === stageKey) el.classList.add('current');
+  });
+}
+
+function goToStage(stageKey) {
+  state.currentStage = stageKey;
+  showScreen('screen-' + stageKey);
+  updateTracker(stageKey);
+  if (stageKey === 'define') initDefine();
+  else if (stageKey === 'measure') initMeasure();
+  else if (stageKey === 'analyze') initAnalyze();
+  else if (stageKey === 'improve') initImprove();
+  else if (stageKey === 'control') initControl();
+}
+
+function completeStage(stageKey) {
+  state.completed[stageKey] = true;
+  updateTracker(stageKey);
+  playComplete();
+  spawnConfetti(40);
+}
+
+function goToComplete() {
+  showScreen('screen-complete');
+  document.getElementById('cert-name').textContent = state.playerName;
+  document.getElementById('cert-date').textContent = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+  spawnConfetti(70);
+}
+
+function startGame() {
+  const nameVal = document.getElementById('name-input').value.trim();
+  state.playerName = nameVal || 'Hero';
+  updatePlayerNameDisplays();
+  goToStage('define');
+}
+
+function resetGame() {
+  state.completed = { define: false, measure: false, analyze: false, improve: false, control: false };
+  showScreen('screen-title');
+}
+
+function toggleMeetHeroes() {
+  document.getElementById('meet-heroes').classList.toggle('hidden');
+}
+
+/* =========================================================
+   DEFINE — "Spot the Waste" (Lauren the Owl)
+   ========================================================= */
+const wasteItems = [
+  { id: 'w1', emoji: '⏳', label: 'Waiting for the oven', waste: true },
+  { id: 'w2', emoji: '🚶', label: 'Walking across the kitchen for spoons', waste: true },
+  { id: 'w3', emoji: '📦', label: 'Extra napkins nobody uses', waste: true },
+  { id: 'w4', emoji: '🔥', label: 'Burnt cookies', waste: true },
+  { id: 'w5', emoji: '🔄', label: 'Double-checking the same order twice', waste: true },
+  { id: 'w6', emoji: '🚚', label: 'Carrying dishes back and forth', waste: true },
+  { id: 'w7', emoji: '🧠', label: 'Great ideas nobody listens to', waste: true },
+  { id: 'w8', emoji: '🐌', label: 'A slow, broken mixer', waste: true },
+  { id: 'v1', emoji: '🍳', label: 'Cooking the meal', waste: false, hint: 'That actually makes the food guests want!' },
+  { id: 'v2', emoji: '🍽️', label: 'Serving a hot plate', waste: false, hint: 'Serving guests is exactly what they are paying for!' },
+  { id: 'v3', emoji: '😊', label: 'Greeting a happy guest', waste: false, hint: 'A warm welcome makes dinner better, not worse!' },
+  { id: 'v4', emoji: '🧑‍🍳', label: 'Plating a beautiful dessert', waste: false, hint: 'Yum! That adds real value.' },
+  { id: 'v5', emoji: '🥗', label: 'Prepping fresh salad', waste: false, hint: 'Fresh food prep is valuable work!' },
+  { id: 'v6', emoji: '💳', label: 'Taking payment', waste: false, hint: 'Getting paid for the meal is important, not waste!' }
+];
+
+function initDefine() {
+  document.getElementById('define-success').classList.add('hidden');
+  document.getElementById('define-found').textContent = '0';
+  const items = shuffle([...wasteItems]);
+  const grid = document.getElementById('define-grid');
+  grid.innerHTML = '';
+  let found = 0;
+  const totalWaste = items.filter(i => i.waste).length;
+
+  items.forEach(item => {
+    const btn = document.createElement('button');
+    btn.className = 'tile';
+    btn.innerHTML = `<span class="tile-emoji">${item.emoji}</span><span class="tile-label">${item.label}</span>`;
+    btn.onclick = () => {
+      if (btn.classList.contains('found')) return;
+      if (item.waste) {
+        btn.classList.add('found');
+        found++;
+        document.getElementById('define-found').textContent = found;
+        playSuccess();
+        showToast('✅ Great catch! "' + item.label + '" is wasting time or effort!', 'success');
+        if (found === totalWaste) {
+          document.getElementById('define-success').classList.remove('hidden');
+          completeStage('define');
+        }
+      } else {
+        btn.classList.add('shake');
+        setTimeout(() => btn.classList.remove('shake'), 500);
+        playOops();
+        showToast('🤔 ' + (item.hint || 'That step actually helps!'), 'warn');
+      }
+    };
+    grid.appendChild(btn);
+  });
+}
+
+/* =========================================================
+   MEASURE — "Stop the Clock" + "Count the Defects" (Ethan the Squirrel)
+   ========================================================= */
+let swInterval = null, swStart = 0, swTarget = 0;
+let defectCount = 0, defectAttempts = 0;
+
+function initMeasure() {
+  document.getElementById('measure-part1').classList.remove('hidden');
+  document.getElementById('measure-part2').classList.add('hidden');
+  document.getElementById('sw-display').textContent = '0.00';
+  document.getElementById('sw-feedback').textContent = '';
+  document.getElementById('sw-next-btn').classList.add('hidden');
+  document.getElementById('sw-start-btn').disabled = false;
+  document.getElementById('sw-stop-btn').disabled = true;
+  document.getElementById('measure-success').classList.add('hidden');
+  defectAttempts = 0;
+  if (swInterval) { clearInterval(swInterval); swInterval = null; }
+}
+
+function startStopwatch() {
+  if (swInterval) return;
+  swTarget = +(2.5 + Math.random() * 2).toFixed(2);
+  swStart = performance.now();
+  document.getElementById('sw-display').textContent = '0.00';
+  document.getElementById('sw-feedback').textContent = '';
+  document.getElementById('sw-start-btn').disabled = true;
+  document.getElementById('sw-stop-btn').disabled = false;
+  swInterval = setInterval(() => {
+    const elapsed = (performance.now() - swStart) / 1000;
+    document.getElementById('sw-display').textContent = elapsed.toFixed(2);
+  }, 30);
+}
+
+function stopStopwatch() {
+  if (!swInterval) return;
+  clearInterval(swInterval);
+  swInterval = null;
+  const elapsed = (performance.now() - swStart) / 1000;
+  const diff = Math.abs(elapsed - swTarget);
+  document.getElementById('sw-start-btn').disabled = false;
+  document.getElementById('sw-stop-btn').disabled = true;
+
+  let msg;
+  if (diff < 0.15) { msg = '🌟 Amazing! Super precise measuring!'; playSuccess(); }
+  else if (diff < 0.4) { msg = '👍 Nice! Pretty close measurement.'; playSuccess(); }
+  else { msg = '🔁 Good try! Real measuring takes practice.'; playOops(); }
+
+  document.getElementById('sw-feedback').textContent =
+    msg + ' (Ethan\'s secret time was ' + swTarget.toFixed(2) + 's — you stopped at ' + elapsed.toFixed(2) + 's)';
+  document.getElementById('sw-next-btn').classList.remove('hidden');
+}
+
+function showMeasurePart2() {
+  document.getElementById('measure-part1').classList.add('hidden');
+  document.getElementById('measure-part2').classList.remove('hidden');
+  initDefectRound();
+}
+
+function initDefectRound() {
+  const grid = document.getElementById('defect-grid');
+  grid.innerHTML = '';
+  defectCount = 3 + Math.floor(Math.random() * 4); // 3-6 defects
+  const total = 9;
+  const idxs = shuffle([...Array(total).keys()]);
+  const isDefectArr = Array(total).fill(false);
+  for (let i = 0; i < defectCount; i++) isDefectArr[idxs[i]] = true;
+
+  isDefectArr.forEach(isDefect => {
+    const d = document.createElement('div');
+    d.className = 'dish-tile';
+    const icon = isDefect ? '🔥' : '🍲';
+    d.textContent = icon;
+    d.dataset.actual = icon;
+    grid.appendChild(d);
+  });
+
+  document.getElementById('defect-answer-area').classList.add('hidden');
+  document.getElementById('defect-feedback').textContent = '';
+  document.getElementById('defect-instructions').textContent = 'Look closely! Memorize the burnt dishes...';
+
+  let timeLeft = 4;
+  document.getElementById('defect-timer').textContent = timeLeft;
+  const t = setInterval(() => {
+    timeLeft--;
+    document.getElementById('defect-timer').textContent = Math.max(timeLeft, 0);
+    if (timeLeft <= 0) {
+      clearInterval(t);
+      document.querySelectorAll('#defect-grid .dish-tile').forEach(el => el.textContent = '❔');
+      document.getElementById('defect-instructions').textContent = 'How many dishes were burnt (🔥)?';
+      const btnWrap = document.getElementById('defect-answer-area');
+      btnWrap.innerHTML = '';
+      for (let n = 0; n <= 8; n++) {
+        const b = document.createElement('button');
+        b.className = 'btn option-btn';
+        b.textContent = n;
+        b.onclick = () => checkDefectAnswer(n);
+        btnWrap.appendChild(b);
+      }
+      btnWrap.classList.remove('hidden');
+    }
+  }, 1000);
+}
+
+function revealDefectGrid() {
+  document.querySelectorAll('#defect-grid .dish-tile').forEach(el => el.textContent = el.dataset.actual);
+  document.getElementById('defect-answer-area').classList.add('hidden');
+}
+
+function checkDefectAnswer(n) {
+  defectAttempts++;
+  if (n === defectCount) {
+    revealDefectGrid();
+    playSuccess();
+    document.getElementById('defect-feedback').textContent = '🎉 Exactly right! Great measuring!';
+    document.getElementById('measure-success').classList.remove('hidden');
+    completeStage('measure');
+  } else if (defectAttempts >= 2) {
+    revealDefectGrid();
+    playOops();
+    document.getElementById('defect-feedback').textContent = 'It was actually ' + defectCount + ' — measuring carefully takes practice. Great try!';
+    document.getElementById('measure-success').classList.remove('hidden');
+    completeStage('measure');
+  } else {
+    playOops();
+    document.getElementById('defect-feedback').textContent = 'Not quite — take another careful look!';
+    initDefectRound();
+  }
+}
+
+/* =========================================================
+   GENERIC MATCHING ENGINE (used by Analyze + Improve)
+   ========================================================= */
+const matchState = {};
+
+function renderMatchGame(key, data, onComplete) {
+  matchState[key] = { selected: null, filledCount: 0, total: data.slots.length, onComplete };
+
+  const slotsEl = document.getElementById(key + '-slots');
+  slotsEl.innerHTML = '';
+  data.slots.forEach(slot => {
+    const div = document.createElement('div');
+    div.className = 'match-slot';
+    div.dataset.slotId = slot.id;
+    div.innerHTML = `<div class="slot-prompt">${slot.prompt}</div><div class="slot-content">Tap a card below to answer</div>`;
+    div.onclick = () => onSlotClick(key, data, slot.id, div);
+    slotsEl.appendChild(div);
+  });
+
+  const poolEl = document.getElementById(key + '-pool');
+  poolEl.innerHTML = '';
+  const shuffledCards = shuffle([...data.cards]);
+  shuffledCards.forEach(card => {
+    const btn = document.createElement('button');
+    btn.className = 'match-card';
+    btn.dataset.cardId = card.id;
+    btn.textContent = card.text;
+    btn.onclick = () => onCardClick(key, card.id, btn);
+    poolEl.appendChild(btn);
+  });
+}
+
+function onCardClick(key, cardId, btn) {
+  if (btn.classList.contains('used')) return;
+  const ms = matchState[key];
+  document.querySelectorAll('#' + key + '-pool .match-card').forEach(b => b.classList.remove('selected'));
+  if (ms.selected === cardId) {
+    ms.selected = null;
+    return;
+  }
+  ms.selected = cardId;
+  btn.classList.add('selected');
+}
+
+function onSlotClick(key, data, slotId, slotEl) {
+  const ms = matchState[key];
+
+  if (slotEl.classList.contains('filled')) {
+    const cardId = slotEl.dataset.filledCard;
+    slotEl.classList.remove('filled');
+    slotEl.querySelector('.slot-content').textContent = 'Tap a card below to answer';
+    delete slotEl.dataset.filledCard;
+    const cardBtn = document.querySelector('#' + key + '-pool .match-card[data-card-id="' + cardId + '"]');
+    if (cardBtn) cardBtn.classList.remove('used', 'selected');
+    ms.filledCount--;
+    return;
+  }
+
+  if (!ms.selected) {
+    showToast('First tap an answer card below!', '');
+    return;
+  }
+
+  const slotDef = data.slots.find(s => s.id === slotId);
+  if (slotDef.correct === ms.selected) {
+    const cardText = data.cards.find(c => c.id === ms.selected).text;
+    slotEl.classList.add('filled');
+    slotEl.querySelector('.slot-content').textContent = cardText;
+    slotEl.dataset.filledCard = ms.selected;
+    const cardBtn = document.querySelector('#' + key + '-pool .match-card[data-card-id="' + ms.selected + '"]');
+    cardBtn.classList.add('used');
+    cardBtn.classList.remove('selected');
+    ms.selected = null;
+    ms.filledCount++;
+    playSuccess();
+    if (ms.filledCount === ms.total) ms.onComplete();
+  } else {
+    slotEl.classList.add('shake');
+    setTimeout(() => slotEl.classList.remove('shake'), 500);
+    playOops();
+    showToast('🤔 Not quite the right match — think about which answer truly fits this box!', 'warn');
+  }
+}
+
+/* =========================================================
+   ANALYZE — "5 Whys Detective" (Aaron the Monkey)
+   ========================================================= */
+const analyzeData = {
+  problem: '🍽️ Problem: Dinner was 45 minutes late!',
+  slots: [
+    { id: 's1', prompt: 'Why #1: Why was dinner late?', correct: 'c1' },
+    { id: 's2', prompt: 'Why #2: Why wasn\'t the oven preheated in time?', correct: 'c2' },
+    { id: 's3', prompt: 'Why #3: Why didn\'t anyone check the timing beforehand?', correct: 'c3' },
+    { id: 's4', prompt: 'Why #4: Why was there no prep checklist?', correct: 'c4' },
+    { id: 's5', prompt: 'Why #5: Why weren\'t the standard steps ever written down?', correct: 'c5' }
+  ],
+  cards: [
+    { id: 'c1', text: '🔥 The oven wasn\'t preheated in time.' },
+    { id: 'c2', text: '📋 Nobody checked the recipe timing beforehand.' },
+    { id: 'c3', text: '🗒️ There was no prep checklist to follow.' },
+    { id: 'c4', text: '✍️ The team never wrote down the standard steps.' },
+    { id: 'c5', text: '🤷 There was no process for saving lessons learned. (Root Cause!)' }
+  ]
+};
+
+function initAnalyze() {
+  document.getElementById('analyze-problem').textContent = analyzeData.problem;
+  document.getElementById('analyze-success').classList.add('hidden');
+  renderMatchGame('analyze', analyzeData, () => {
+    document.getElementById('analyze-success').classList.remove('hidden');
+    completeStage('analyze');
+  });
+}
+
+/* =========================================================
+   IMPROVE — "Build a Solution" (Neo the Badger)
+   ========================================================= */
+const improveData = {
+  problem: '🔧 Let\'s fix the kitchen process so dinner is never late again!',
+  slots: [
+    { id: 'i1', prompt: 'Before cooking starts, the team needs...', correct: 't1' },
+    { id: 'i2', prompt: 'To know exactly when the oven is ready...', correct: 't2' },
+    { id: 'i3', prompt: 'So ingredients are never lost or mixed up...', correct: 't3' },
+    { id: 'i4', prompt: 'So the whole team stays in sync all night...', correct: 't4' }
+  ],
+  cards: [
+    { id: 't1', text: '📋 Use a Prep Checklist' },
+    { id: 't2', text: '⏰ Set a Timer Alarm' },
+    { id: 't3', text: '🏷️ Add Labeled Shelves' },
+    { id: 't4', text: '🗣️ Hold a Quick Team Huddle' },
+    { id: 't5', text: '🦝 Just Wing It and Skip Planning' },
+    { id: 't6', text: '📢 Yell Louder Instead of Planning' }
+  ]
+};
+
+function initImprove() {
+  document.getElementById('improve-problem').textContent = improveData.problem;
+  document.getElementById('improve-success').classList.add('hidden');
+  renderMatchGame('improve', improveData, () => {
+    document.getElementById('improve-success').classList.remove('hidden');
+    completeStage('improve');
+  });
+}
+
+/* =========================================================
+   CONTROL — "Sustain the Gain" Quiz (Master Taff Dragon)
+   ========================================================= */
+const quizData = [
+  { q: 'Now that the kitchen is fixed, how do we make sure it STAYS fixed?', options: [
+    { t: 'Write down the new steps so everyone remembers', correct: true },
+    { t: 'Forget about it and hope for the best', correct: false },
+    { t: 'Only the head chef needs to know', correct: false }
+  ]},
+  { q: 'What should the team do if they spot a new problem?', options: [
+    { t: 'Ignore it — it will go away', correct: false },
+    { t: 'Tell someone and check the process', correct: true },
+    { t: 'Blame Risky Raccoon and move on', correct: false }
+  ]},
+  { q: 'Why do we check on the process regularly?', options: [
+    { t: 'To catch small problems before they become big ones', correct: true },
+    { t: 'Just for fun', correct: false },
+    { t: 'To create more paperwork', correct: false }
+  ]},
+  { q: 'What is a checklist used for in the Control phase?', options: [
+    { t: 'Decoration for the kitchen wall', correct: false },
+    { t: 'Making sure every step happens the same great way every time', correct: true },
+    { t: 'Making the kitchen slower', correct: false }
+  ]},
+  { q: 'What does Lean thinking really mean?', options: [
+    { t: 'Doing it once and never improving again', correct: false },
+    { t: 'Making things more complicated', correct: false },
+    { t: 'Always looking for ways to reduce waste and keep improving', correct: true }
+  ]}
+];
+
+let quizIndex = 0;
+
+function initControl() {
+  quizIndex = 0;
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
+  const q = quizData[quizIndex];
+  document.getElementById('quiz-progress').textContent = 'Question ' + (quizIndex + 1) + ' of ' + quizData.length;
+  document.getElementById('quiz-question').textContent = q.q;
+  const optsEl = document.getElementById('quiz-options');
+  optsEl.innerHTML = '';
+  const opts = shuffle([...q.options]);
+  opts.forEach(opt => {
+    const b = document.createElement('button');
+    b.className = 'btn quiz-option';
+    b.textContent = opt.t;
+    b.onclick = () => {
+      if (opt.correct) {
+        b.classList.add('correct-flash');
+        playSuccess();
+        showToast('Yes! Master Taff nods approvingly. 🐉', 'success');
+        document.querySelectorAll('#quiz-options .quiz-option').forEach(btn => btn.disabled = true);
+        setTimeout(() => {
+          quizIndex++;
+          if (quizIndex < quizData.length) renderQuizQuestion();
+          else finishControl();
+        }, 900);
+      } else {
+        b.classList.add('shake');
+        setTimeout(() => b.classList.remove('shake'), 500);
+        playOops();
+        showToast('Not quite — think about sustaining the gains! Try again.', 'warn');
+      }
+    };
+    optsEl.appendChild(b);
+  });
+}
+
+function finishControl() {
+  completeStage('control');
+  goToComplete();
+}
+
+/* =========================================================
+   INIT
+   ========================================================= */
+showScreen('screen-title');
+</script>
+</body>
+</html>

@@ -1,0 +1,1351 @@
+/* EDACK Books styles.
+   Mobile first: the basic rules are for phones. The @media blocks add the bigger-screen layout. */
+
+/* ---------- Fonts (stored on this site, so no outside requests) ---------- */
+@font-face {
+  font-family: "Fredoka";
+  src: url("../fonts/fredoka.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("../fonts/nunito.woff2") format("woff2");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Colours and sizes ---------- */
+:root {
+  --brown: #3A2210;
+  --cream: #FDF3DF;
+  --gold: #FFC850;
+  --coral: #FF6E5A;
+  --green: #2F6B3A;
+
+  --bg: #FFFCF6;
+  --surface: #FFFFFF;
+  --surface-alt: var(--cream);
+  --text: var(--brown);
+  --muted: #6B5442;
+  --border: rgba(58, 34, 16, 0.12);
+  --accent-text: var(--green);
+  --gold-soft: #FFF0C7;
+  --coral-soft: #FFE4DE;
+  --focus: var(--green);
+  --shadow: 0 1px 2px rgba(58, 34, 16, 0.06), 0 20px 40px -16px rgba(58, 34, 16, 0.22);
+  --shadow-lg: 0 2px 4px rgba(58, 34, 16, 0.06), 0 32px 64px -20px rgba(58, 34, 16, 0.3);
+
+  --radius: 28px;
+  --radius-sm: 16px;
+  --header-h: 64px;
+  --font-heading: "Fredoka", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1E1209;
+    --surface: #2A1A0E;
+    --surface-alt: #251609;
+    --text: var(--cream);
+    --muted: #D8C4A6;
+    --border: rgba(253, 243, 223, 0.14);
+    --accent-text: var(--gold);
+    --gold-soft: rgba(255, 200, 80, 0.16);
+    --coral-soft: rgba(255, 110, 90, 0.22);
+    --focus: var(--gold);
+    --shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 32px 64px -20px rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* ---------- Basics ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5em;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 7vw + 0.5rem, 4.75rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(2rem, 3.5vw + 1rem, 3.25rem);
+}
+
+h3 {
+  font-size: clamp(1.4rem, 1vw + 1.1rem, 1.75rem);
+}
+
+p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+figure {
+  margin: 0;
+}
+
+a {
+  color: var(--accent-text);
+  text-underline-offset: 0.2em;
+}
+
+/* A clear ring shows which button or link you are on when using the keyboard */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* ---------- Helpers ---------- */
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 32px;
+  }
+}
+
+/* Hidden on screen, but still read out by screen readers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: var(--brown);
+  color: var(--cream);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.75rem;
+  color: var(--accent-text);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--coral);
+}
+
+.lead {
+  font-size: clamp(1.2rem, 1vw + 1rem, 1.45rem);
+}
+
+.small {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- Buttons ---------- */
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 12px 26px;
+  border: 2px solid transparent;
+  border-radius: 999px;
+  font-family: var(--font-heading);
+  font-size: 1.075rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--brown);
+  box-shadow: 0 8px 20px -8px rgba(255, 170, 40, 0.7);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 12px 24px -8px rgba(255, 170, 40, 0.85);
+}
+
+.btn-secondary {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border-color: currentColor;
+}
+
+.btn-large {
+  min-height: 60px;
+  padding-inline: 36px;
+  font-size: 1.2rem;
+}
+
+/* On small phones, buttons fill the width so they are easy to tap */
+@media (max-width: 479px) {
+  .button-row .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(14px);
+  backdrop-filter: saturate(1.4) blur(14px);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: var(--header-h);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* The EDACK logo: 44px tall on phones, 56px on bigger screens */
+.logo .logo-img {
+  width: auto;
+  height: 44px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 72px;
+  }
+
+  .logo .logo-img {
+    height: 56px;
+  }
+}
+
+/* The logo's quote text is dark, so on the dark theme the logo sits on a soft cream circle */
+@media (prefers-color-scheme: dark) {
+  .logo-img {
+    padding: 3px;
+    border-radius: 50%;
+    background: var(--cream);
+  }
+}
+
+/* The hamburger button (phones only) */
+.menu-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.menu-icon {
+  position: relative;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.menu-icon::before {
+  top: -7px;
+}
+
+.menu-icon::after {
+  top: 7px;
+}
+
+/* When the menu is open, the three lines turn into an X */
+.site-header:has(.site-nav:popover-open) .menu-icon {
+  background: transparent;
+}
+
+.site-header:has(.site-nav:popover-open) .menu-icon::before {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-header:has(.site-nav:popover-open) .menu-icon::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* The menu panel that drops down on phones */
+.site-nav {
+  inset: calc(var(--header-h) + 8px) 12px auto 12px;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+}
+
+.site-nav::backdrop {
+  background: rgba(30, 18, 9, 0.35);
+}
+
+.site-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding: 10px 16px;
+  border-radius: 16px;
+  color: var(--text);
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  background: var(--gold-soft);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-nav:popover-open {
+    animation: menu-in 0.2s ease-out;
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}
+
+/* On tablets and computers the links sit in the header and the hamburger hides */
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .site-nav[popover] {
+    display: block;
+    position: static;
+    inset: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .site-nav ul {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .site-nav a {
+    min-height: 44px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 1.05rem;
+  }
+}
+
+/* ---------- 1. Hero ---------- */
+/* Phones: words on top, the artwork below, fading in softly. */
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 0% 0%, var(--gold-soft), transparent 60%), var(--bg);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(40px, 8vw, 96px) 0;
+}
+
+.hero h1 {
+  max-width: 11ch;
+}
+
+.hero-sub {
+  max-width: 28ch;
+  margin-bottom: 28px;
+  font-size: clamp(1.2rem, 1.2vw + 1rem, 1.5rem);
+}
+
+/* "Listen to the first chapters free." under the hero buttons */
+.hero-note {
+  margin: 20px 0 0;
+  font-weight: 700;
+}
+
+.hero-bg {
+  order: 2;
+  width: 100%;
+  margin-top: -12%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 32%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 32%);
+}
+
+/* Computers: words on the left, the artwork on the right, fading in from the side. */
+@media (min-width: 900px) {
+  .hero {
+    justify-content: center;
+    min-height: min(calc(100svh - var(--header-h)), 820px);
+  }
+
+  .hero-content {
+    padding-block: 96px;
+  }
+
+  .hero-content > * {
+    max-width: 34rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 62%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
+    object-position: 50% 65%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 35%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 35%);
+  }
+}
+
+/* ---------- Sections ---------- */
+.section {
+  padding-block: clamp(64px, 9vw, 120px);
+  overflow-x: clip;
+}
+
+/* ---------- 2. The Lean Heroes (featured book) ---------- */
+.feature-card {
+  display: grid;
+  gap: 32px;
+  padding: clamp(20px, 4vw, 56px);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 8px);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-cover img {
+  width: min(100%, 360px);
+  margin-inline: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .feature-cover img {
+    transition: transform 0.4s ease;
+  }
+
+  .feature-card:hover .feature-cover img {
+    transform: rotate(-1.5deg) scale(1.02);
+  }
+}
+
+.pill {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--coral-soft);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.feature-body > p:not(.pill) {
+  font-size: 1.1rem;
+}
+
+@media (min-width: 900px) {
+  .feature-card {
+    grid-template-columns: minmax(280px, 400px) 1fr;
+    align-items: center;
+    gap: 56px;
+  }
+
+  .feature-cover img {
+    width: 100%;
+  }
+}
+
+/* The five DMAIC steps: a list on phones, a row of five on bigger screens */
+.dmaic {
+  display: grid;
+  gap: 10px;
+  margin: 28px 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.dmaic li {
+  display: grid;
+  grid-template-columns: 48px auto 1fr;
+  align-items: center;
+  column-gap: 14px;
+  padding: 8px 14px 8px 8px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--bg);
+}
+
+.dmaic svg {
+  width: 48px;
+  height: 48px;
+  padding: 11px;
+  border-radius: 14px;
+  background: var(--gold-soft);
+  color: var(--accent-text);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dmaic strong {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.dmaic span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 600px) {
+  .dmaic {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .dmaic li {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 6px;
+    padding: 16px 8px;
+    text-align: center;
+  }
+}
+
+/* The free Lean Heroes game card, under the book */
+.game-card {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  padding: clamp(20px, 4vw, 40px);
+  border: 2px dashed color-mix(in srgb, var(--coral) 60%, transparent);
+  border-radius: var(--radius);
+  background: radial-gradient(ellipse at 0% 0%, var(--gold-soft), transparent 70%), var(--surface);
+  text-align: center;
+}
+
+.game-badge {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+
+.game-body h3 {
+  margin-bottom: 0.3em;
+}
+
+.game-body p {
+  max-width: 46ch;
+  margin-inline: auto;
+}
+
+/* Bigger screens: the badge sits to the left of the words */
+@media (min-width: 768px) {
+  .game-card {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    justify-items: start;
+    column-gap: 32px;
+    text-align: left;
+  }
+
+  .game-body p {
+    margin-inline: 0;
+  }
+}
+
+/* ---------- 3. Free printable ---------- */
+.section-printable {
+  background: radial-gradient(ellipse at 85% 20%, var(--gold-soft), transparent 55%), var(--surface-alt);
+}
+
+/* The older one-certificate layout (printable-grid, printable-preview...).
+   The page no longer uses it, but it is kept on purpose. */
+.printable-grid {
+  display: grid;
+  gap: 32px;
+}
+
+.printable-preview {
+  position: relative;
+}
+
+.printable-preview img {
+  width: 100%;
+  border: 10px solid #FFFFFF;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  transform: rotate(-1.5deg);
+}
+
+/* The round "Free!" sticker on the corner of the certificate */
+.printable-preview::after {
+  content: "Free!";
+  position: absolute;
+  top: -18px;
+  right: -6px;
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--coral);
+  color: var(--brown);
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  transform: rotate(12deg);
+}
+
+@media (min-width: 900px) {
+  .printable-grid {
+    grid-template-columns: 1fr 1.15fr;
+    grid-template-areas:
+      "heading preview"
+      "actions preview";
+    align-items: center;
+    column-gap: 64px;
+    row-gap: 8px;
+  }
+
+  .printable-heading {
+    grid-area: heading;
+    align-self: end;
+  }
+
+  .printable-preview {
+    grid-area: preview;
+  }
+
+  .printable-actions {
+    grid-area: actions;
+    align-self: start;
+  }
+}
+
+/* The free printables gallery: one card per freebie (from freebies.json) */
+.freebie-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+@media (min-width: 700px) {
+  .freebie-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+}
+
+.freebie-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+/* The picture sits on a soft gold panel that is always the same shape,
+   so tall and wide pictures both fit without stretching the card */
+.freebie-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--gold-soft);
+}
+
+.freebie-image img {
+  position: absolute;
+  inset: 20px;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  object-fit: contain;
+  filter: drop-shadow(0 10px 18px rgba(58, 34, 16, 0.25));
+}
+
+/* The round "Free!" sticker on every freebie */
+.freebie-image::after {
+  content: "Free!";
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--coral);
+  color: var(--brown);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  transform: rotate(12deg);
+}
+
+.freebie-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 24px 24px;
+}
+
+.freebie-body h3 {
+  margin-bottom: 0.3em;
+}
+
+/* Buttons line up at the bottom, even when descriptions are different lengths */
+.freebie-body .button-row {
+  align-self: stretch;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+/* While there is only one freebie, it shows as one wide card on bigger screens */
+@media (min-width: 900px) {
+  .freebie-grid:has(> .freebie-card:only-child) {
+    grid-template-columns: 1fr;
+  }
+
+  .freebie-card:only-child {
+    flex-direction: row;
+  }
+
+  .freebie-card:only-child .freebie-image {
+    flex: 1.2;
+  }
+
+  .freebie-card:only-child .freebie-body {
+    flex: 1;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .freebie-card:only-child .freebie-body .button-row {
+    margin-top: 12px;
+  }
+}
+
+/* ---------- 4. For grown-ups: satire (a darker, grown-up section) ---------- */
+.section-satire {
+  --bg: #2A170A;
+  --surface: #3A2210;
+  --text: var(--cream);
+  --muted: #E0CDB0;
+  --border: rgba(253, 243, 223, 0.14);
+  --accent-text: var(--gold);
+  --focus: var(--gold);
+  background: var(--bg);
+  color: var(--text);
+  color-scheme: dark; /* so the audio players match the dark section */
+}
+
+@media (prefers-color-scheme: dark) {
+  .section-satire {
+    --bg: #120A04;
+    --surface: #24150A;
+  }
+}
+
+.book-grid {
+  display: grid;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.book-card {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+}
+
+.book-cover {
+  width: min(70%, 240px);
+  margin-inline: auto;
+  border-radius: 10px;
+  box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.55);
+}
+
+.book-body h3 {
+  margin-bottom: 0.4em;
+}
+
+.see-amazon {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* "Listen to Chapter One, free" box inside each satire card */
+.listen {
+  margin: 20px 0 24px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+}
+
+.listen-title {
+  margin: 0 0 4px;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.listen-meta {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.listen audio {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+}
+
+/* Big enough to tap easily (inline-block keeps the space before "(9 MB)") */
+.listen-download {
+  display: inline-block;
+  margin-top: 2px;
+  padding-block: 10px;
+  font-weight: 700;
+}
+
+@media (min-width: 768px) {
+  .book-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- 5. About ---------- */
+.about-grid {
+  display: grid;
+  align-items: center;
+  gap: 32px;
+}
+
+.about-figure {
+  justify-self: center;
+  max-width: 280px;
+  text-align: center;
+}
+
+.about-figure img {
+  width: 220px;
+  filter: drop-shadow(0 16px 24px rgba(58, 34, 16, 0.25));
+}
+
+.about-figure figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.about-text > p:not(.eyebrow) {
+  max-width: 60ch;
+  font-size: 1.15rem;
+}
+
+/* Master Taff's little round picture next to the "pet bearded dragon" line */
+.taff-note {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 60ch;
+  margin: 24px 0 0;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+}
+
+.taff-note img {
+  flex: none;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+
+.taff-note p {
+  margin: 0;
+}
+
+.taff-note p + p {
+  margin-top: 4px;
+}
+
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 280px 1fr;
+    gap: 64px;
+  }
+}
+
+/* ---------- 6. Contact and footer (forest green) ---------- */
+.site-footer {
+  --text: var(--cream);
+  --muted: #D6E5D2;
+  --border: rgba(253, 243, 223, 0.2);
+  --accent-text: var(--gold);
+  --focus: var(--gold);
+  padding-block: clamp(64px, 9vw, 104px) 40px;
+  background: var(--green);
+  color: var(--text);
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-footer {
+    background: #17351D;
+  }
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.site-footer h2 {
+  margin-bottom: 0.3em;
+}
+
+/* Small logo above "Say hello", always on cream so it shows up on the green */
+.footer-logo {
+  width: 72px;
+  height: auto;
+  margin-bottom: 16px;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--cream);
+}
+
+.site-footer .btn {
+  margin: 8px 0 32px;
+}
+
+.social {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(253, 243, 223, 0.12);
+  color: var(--cream);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.social a:hover {
+  background: var(--gold);
+  color: var(--brown);
+}
+
+.social svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.site-footer .small {
+  margin-bottom: 4px;
+}
+
+/* ---------- Gentle fade-in as you scroll (only when JavaScript is on) ---------- */
+.js .reveal {
+  opacity: 0;
+  translate: 0 24px;
+  transition: opacity 0.7s ease, translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* ---------- People who prefer less movement get none ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    translate: none;
+  }
+
+  .btn:hover,
+  .book-card:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Lesson pages (Elements of Lean) ----------
+   Text on lesson pages is never smaller than 18px. */
+.lesson {
+  font-size: 1.125rem;
+}
+
+.lesson .btn {
+  font-size: 1.125rem;
+}
+
+.lesson-inner {
+  max-width: 760px;
+}
+
+.lesson h1 {
+  font-size: clamp(2.1rem, 5vw + 0.5rem, 3.4rem);
+}
+
+.lesson h2 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 1.6em;
+  font-size: clamp(1.6rem, 2vw + 1rem, 2.2rem);
+}
+
+.lesson-crumbs {
+  margin-bottom: 1.5rem;
+  color: var(--muted);
+}
+
+.lesson-kicker {
+  margin-bottom: 0.5rem;
+  color: var(--accent-text);
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+.lesson-lead {
+  font-size: clamp(1.25rem, 1vw + 1rem, 1.45rem);
+}
+
+.lesson-num {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--cream);
+  font-size: 1.4rem;
+}
+
+.lesson-game,
+.lesson-check {
+  margin: 1.5rem 0;
+  padding: clamp(20px, 4vw, 32px);
+  border-radius: var(--radius);
+  background: var(--gold-soft);
+}
+
+.lesson-check {
+  background: var(--surface-alt);
+}
+
+.lesson-game-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.sipoc-table {
+  width: 100%;
+  margin: 1rem 0 1.5rem;
+  border-collapse: collapse;
+}
+
+.sipoc-table caption {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.sipoc-table th,
+.sipoc-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+/* On phones the table becomes a list of cards, one per letter */
+@media (max-width: 599px) {
+  .sipoc-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .sipoc-table tr {
+    display: block;
+    margin-bottom: 12px;
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-alt);
+  }
+
+  .sipoc-table th,
+  .sipoc-table td {
+    display: block;
+    padding: 2px 0;
+    border: 0;
+  }
+
+  .sipoc-table th {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+  }
+}
+
+.lesson-steps li + li {
+  margin-top: 0.6em;
+}
+
+.lesson-note {
+  margin-top: 2rem;
+  color: var(--muted);
+}
+
+.lesson-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 2rem;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.lesson-author img {
+  flex: none;
+  width: 64px;
+  height: auto;
+}
+
+.lesson-author p {
+  margin: 0;
+}
+
+.lesson-footer-text {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+/* ---------- The Summer Fayre game card ---------- */
+.game-card-fayre {
+  border-color: color-mix(in srgb, var(--gold) 80%, transparent);
+}
+
+.game-emoji {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #FFE36E;
+  box-shadow: var(--shadow);
+  font-size: 4rem;
+  line-height: 1;
+}
