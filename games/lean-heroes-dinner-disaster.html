@@ -5,6 +5,24 @@
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Lean Heroes: Dinner Disaster! Free game | EDACK Books</title>
+<meta name="description" content="A free game for ages 8 to 11. Save dinner with the Lean Heroes, learn the five DMAIC steps, then print a Lean Hero certificate.">
+<!-- Safety settings: this game loads nothing from anywhere, sends nothing anywhere, and uses no cookies. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://www.edackdavid.com/games/lean-heroes-dinner-disaster.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%BD%EF%B8%8F%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EDACK Books">
+<meta property="og:locale" content="en_GB">
+<meta property="og:title" content="Lean Heroes: Dinner Disaster! A free DMAIC game with a printable certificate">
+<meta property="og:description" content="Save dinner with the Lean Heroes and learn DMAIC. Free, for ages 8 to 11, with a printable certificate.">
+<meta property="og:url" content="https://www.edackdavid.com/games/lean-heroes-dinner-disaster.html">
+<meta property="og:image" content="https://www.edackdavid.com/images/pins/dinner-disaster-certificate-pin.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="1500">
+<meta property="og:image:alt" content="A sample Lean Hero: Dinner Disaster Solved certificate with a blank name line. Free game and printable certificate for ages 8 to 11.">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   /* ---------- Reset & base ---------- */
   *, *::before, *::after { box-sizing: border-box; }
@@ -183,6 +201,43 @@
   .cert-heroes { font-size: 32px; margin: 16px 0; }
   .cert-signature { font-style: italic; margin-top: 14px; }
   .cycle-reminder { text-align: center; max-width: 600px; margin: 20px auto; font-size: 16px; background: #fff; padding: 16px; border-radius: 16px; }
+  .cert-ticks { list-style: none; padding: 0; margin: 14px 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .cert-ticks li { background: #EAFBF0; border: 2px solid #6BCB77; border-radius: 12px; padding: 4px 10px; font-weight: bold; font-size: 15px; }
+  .cert-ticks li::before { content: "✓ "; color: #2E8B57; }
+  .cert-site { font-size: 13px; color: #777; margin-top: 10px; }
+  .cert-tools { text-align: center; max-width: 600px; margin: 0 auto 20px; background: #fff; padding: 16px; border-radius: 16px; font-size: 18px; }
+  .cert-tools .name-label { margin-top: 0; }
+  .cert-note, .pin-line { font-size: 16px; line-height: 1.5; color: #555; }
+  .btn-light { background: #fff; color: #2D2A32; border: 2px solid #ddd; }
+  .btn-pin { background: #E60023; color: #fff; }
+  a.btn { display: inline-block; text-decoration: none; }
+  .end-links { text-align: center; margin-top: 18px; }
+
+  /* ---------- For grown-ups ---------- */
+  dialog {
+    width: min(100% - 24px, 680px); max-height: calc(100vh - 24px); padding: 0; border: 0;
+    border-radius: 20px; color: #2D2A32; background: #fff; box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    font-size: 18px; line-height: 1.5;
+  }
+  dialog::backdrop { background: rgba(45, 42, 50, 0.55); }
+  .dialog-inner { padding: 20px 22px 26px; }
+  .dialog-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .dialog-head h2 { margin: 0; color: #FF6B6B; font-size: 26px; }
+  dialog h3 { margin: 20px 0 6px; color: #2E8B57; }
+  dialog ul { padding-left: 22px; }
+  dialog li { margin-bottom: 6px; }
+  .feynman { padding: 4px 16px 12px; background: #EAFBF0; border-radius: 16px; margin-top: 18px; }
+  .family-line { font-weight: bold; }
+
+  /* ---------- Printing: only the certificate, when the game is finished ---------- */
+  @media print {
+    @page { margin: 12mm; }
+    body { background: #fff; padding: 0; }
+    body:has(#screen-complete.active) > *:not(#screen-complete) { display: none !important; }
+    #screen-complete > *:not(.certificate) { display: none !important; }
+    #screen-complete { padding: 0; animation: none; }
+    .certificate { box-shadow: none; margin: 0 auto; break-inside: avoid; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 600px) {
@@ -230,11 +285,14 @@
       <div class="hero-chip villain">🦝<span>Risky!</span></div>
     </div>
     <label class="name-label">What's your name, Lean Hero?
-      <input type="text" id="name-input" maxlength="16" placeholder="Type your name (optional)">
+      <input type="text" id="name-input" maxlength="16" placeholder="Type your name (optional)" autocomplete="off">
     </label>
     <div>
       <button class="btn btn-primary btn-big" onclick="startGame()">🚀 Start the Adventure!</button>
       <button class="btn btn-secondary" onclick="toggleMeetHeroes()">👀 Meet the Heroes</button>
+    </div>
+    <div>
+      <button class="btn btn-light" type="button" onclick="openGrownups()">For grown-ups</button>
     </div>
     <div id="meet-heroes" class="meet-heroes hidden">
       <ul>
@@ -353,24 +411,84 @@
 <!-- ================= COMPLETE SCREEN ================= -->
 <section id="screen-complete" class="screen">
   <div class="certificate">
-    <div class="cert-header">🏆 Certificate of Lean Heroism 🏆</div>
+    <div class="cert-header">🏆 Lean Hero: Dinner Disaster Solved 🏆</div>
     <p>This certifies that</p>
     <h2 id="cert-name">Hero</h2>
     <p>has completed the <strong>DMAIC</strong> cycle and saved dinner from disaster!</p>
+    <ul class="cert-ticks" aria-label="The five DMAIC steps, all done">
+      <li>Define</li>
+      <li>Measure</li>
+      <li>Analyse</li>
+      <li>Improve</li>
+      <li>Control</li>
+    </ul>
     <div class="cert-heroes">🦉 🐿️ 🐒 🦡 🐉</div>
     <p class="cert-date" id="cert-date"></p>
     <p class="cert-signature">— Master Taff Dragon 🐉</p>
+    <p class="cert-site">EDACK Books · www.edackdavid.com</p>
+  </div>
+  <!-- The name stays on this screen. It is never sent or saved anywhere. -->
+  <div class="cert-tools">
+    <label class="name-label">First name for your certificate
+      <input type="text" id="cert-name-input" maxlength="16" placeholder="Type your first name" autocomplete="off" oninput="updateCertName()">
+    </label>
+    <p class="cert-note">Your name stays on this screen. It is never sent or saved anywhere.</p>
+    <button class="btn btn-primary btn-big" type="button" onclick="window.print()">🖨️ Print my certificate</button>
+    <p class="pin-line">Proud of your Lean Hero? Print the certificate for the fridge, or save the free version to Pinterest to share the game.</p>
+    <a class="btn btn-pin" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.edackdavid.com%2Fgames%2Flean-heroes-dinner-disaster.html&amp;media=https%3A%2F%2Fwww.edackdavid.com%2Fimages%2Fpins%2Fdinner-disaster-certificate-pin.png&amp;description=Free%20Lean%20Heroes%20game%20for%20ages%208%20to%2011%3A%20save%20dinner%20with%20DMAIC%2C%20then%20print%20a%20Lean%20Hero%20certificate." target="_blank" rel="noopener">📌 Save to Pinterest</a>
   </div>
   <p class="cycle-reminder">🔄 Remember: Lean isn't a one-time fix — it's a never-ending circle of <strong>D</strong>efine, <strong>M</strong>easure, <strong>A</strong>nalyse, <strong>I</strong>mprove, and <strong>C</strong>ontrol! Every time the kitchen finds a new problem, the circle starts again.</p>
   <div style="text-align:center;">
     <button class="btn btn-primary btn-big" onclick="resetGame()">🔁 Play Again</button>
   </div>
+  <div class="end-links">
+    <a class="btn btn-secondary btn-big" href="lean-heroes-summer-fayre.html">Next: plan a lemonade stall in the Summer Fayre game 🍋</a>
+  </div>
   <div style="text-align:center;margin-top:18px;">
     <p><strong>Want the whole story?</strong> Read <em>The Lean Heroes and the Dinner Disaster</em>, with puzzles, colouring pages and your own Yellow Belt certificate.</p>
     <a class="btn btn-primary btn-big" href="https://amzn.eu/d/06jhQWxB" target="_blank" rel="noopener">📚 Get the book on Amazon</a>
+    <p><button class="btn btn-light" type="button" onclick="openGrownups()">For grown-ups</button></p>
     <p style="margin-top:12px;"><a href="../">← Back to EDACK Books</a></p>
   </div>
 </section>
+
+<!-- ================= FOR GROWN-UPS ================= -->
+<dialog id="grownups" aria-labelledby="grownups-title">
+  <div class="dialog-inner">
+    <div class="dialog-head">
+      <h2 id="grownups-title">For grown-ups</h2>
+      <button class="btn btn-light" type="button" id="grownups-close" onclick="closeGrownups()">Close</button>
+    </div>
+
+    <h3>DMAIC in one minute</h3>
+    <p>DMAIC is five steps for fixing a problem so it stays fixed. Here they are with the dinner disaster:</p>
+    <ul>
+      <li><strong>Define:</strong> say the problem in one sentence. "Dinner was 45 minutes late."</li>
+      <li><strong>Measure:</strong> count what really happened, like how many dishes got burnt.</li>
+      <li><strong>Analyse:</strong> ask "Why?" again and again until you reach the root cause, not just the first answer.</li>
+      <li><strong>Improve:</strong> try a better way, like a prep checklist or a timer, and check it works.</li>
+      <li><strong>Control:</strong> make the fix stick. Write the new steps down and keep checking them.</li>
+    </ul>
+
+    <h3>Why it matters</h3>
+    <p>These are the same five steps real factories, hospitals and offices use to fix problems. Here your child practises them in a kitchen.</p>
+
+    <div class="feynman">
+      <h3>The Feynman check</h3>
+      <p>Can you explain the five steps to your child using something from your own home, like a messy bedroom or a late school run? Then you've got it.</p>
+    </div>
+
+    <p class="family-line">Fifteen minutes together, and you both get a way to break down problems.</p>
+
+    <h3>Elements of Lean</h3>
+    <p>Learn Lean by teaching it to your child.</p>
+    <ul>
+      <li><a href="../elements-of-lean/dmaic/">Read the lesson: DMAIC</a></li>
+      <li><a href="../elements-of-lean/bonus-sipoc/">Read the bonus lesson: SIPOC</a></li>
+    </ul>
+    <p><a class="btn btn-pin" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.edackdavid.com%2Fgames%2Flean-heroes-dinner-disaster.html&amp;media=https%3A%2F%2Fwww.edackdavid.com%2Fimages%2Fpins%2Fdinner-disaster-certificate-pin.png&amp;description=Free%20Lean%20Heroes%20game%20for%20ages%208%20to%2011%3A%20save%20dinner%20with%20DMAIC%2C%20then%20print%20a%20Lean%20Hero%20certificate." target="_blank" rel="noopener">📌 Save to Pinterest</a></p>
+  </div>
+</dialog>
 
 <script>
 /* =========================================================
@@ -500,8 +618,34 @@ function goToComplete() {
   showScreen('screen-complete');
   document.getElementById('cert-name').textContent = state.playerName;
   document.getElementById('cert-date').textContent = new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('cert-name-input').value = state.playerName === 'Hero' ? '' : state.playerName;
   spawnConfetti(70);
 }
+
+/* The certificate name lives on this screen only: never sent, never saved. */
+function updateCertName() {
+  const typed = document.getElementById('cert-name-input').value.replace(/\s+/g, ' ').trim();
+  document.getElementById('cert-name').textContent = typed || 'Hero';
+}
+
+/* =========================================================
+   FOR GROWN-UPS
+   ========================================================= */
+function openGrownups() {
+  const dialog = document.getElementById('grownups');
+  if (typeof dialog.showModal === 'function') dialog.showModal();
+  else dialog.setAttribute('open', '');
+}
+
+function closeGrownups() {
+  const dialog = document.getElementById('grownups');
+  if (typeof dialog.close === 'function') dialog.close();
+  else dialog.removeAttribute('open');
+}
+
+document.getElementById('grownups').addEventListener('click', (event) => {
+  if (event.target.id === 'grownups') closeGrownups();
+});
 
 function startGame() {
   const nameVal = document.getElementById('name-input').value.trim();
@@ -512,6 +656,7 @@ function startGame() {
 
 function resetGame() {
   state.completed = { define: false, measure: false, analyze: false, improve: false, control: false };
+  document.getElementById('cert-name-input').value = '';
   showScreen('screen-title');
 }
 
