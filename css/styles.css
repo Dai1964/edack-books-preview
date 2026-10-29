@@ -1547,3 +1547,18 @@ a {
     padding-block: 0 48px;
   }
 }
+
+/* Computers: show the WHOLE hero picture, never cropped top or bottom.
+   The picture keeps its own shape (1080 x 1341) and is as tall as the hero,
+   so its width follows from its height. On very wide, short windows it simply sits narrower. */
+@media (min-width: 900px) {
+  .hero-bg {
+    left: auto;
+    width: auto;
+    max-width: 62%;
+    aspect-ratio: 1080 / 1341;
+    object-position: 50% 50%;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 22%);
+  }
+}
