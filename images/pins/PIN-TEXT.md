@@ -2,7 +2,7 @@
 
 Use this when you post the pin yourself on Pinterest.
 
-**Picture:** `dinner-disaster-certificate-pin-v2.png` (the brighter second version) (in this folder)
+**Picture:** `dinner-disaster-certificate-pin-v3.png` (version 3, with the polished wording) (in this folder)
 
 **Board:** Free printables for kids
 
@@ -19,13 +19,13 @@ https://www.edackdavid.com/games/lean-heroes-dinner-disaster.html
 free printables for kids, problem solving for kids, kids learning games, printable certificate, lean thinking
 
 **Alt text:**
-A sample "Lean Hero: Dinner Disaster Solved" certificate taped below the Lean Heroes characters, with "Your name here" on the name line, five gold stars for Define, Measure, Analyse, Improve and Control, Master Taff in a ring of stars, and an "I'm a Lean Hero!" badge seal. A banner says "Free to print! Lean Hero Certificate".
+A sample "Dinner Disaster Solved!" Lean Hero certificate taped below the Lean Heroes characters, with "Your name here" on the name line, five gold stars for Define, Measure, Analyse, Improve and Control, Master Taff in a ring of stars with a blank date line, and an "I'm a Lean Hero!" badge seal. A banner says "Free to print! Lean Hero Certificate".
 
 ---
 
 # Pin text: Summer Fayre certificate
 
-**Picture:** `summer-fayre-certificate-pin-v2.png` (the brighter second version) (in this folder)
+**Picture:** `summer-fayre-certificate-pin-v3.png` (version 3, with the polished wording) (in this folder)
 
 **Board:** Free printables for kids
 
@@ -42,4 +42,4 @@ https://www.edackdavid.com/games/lean-heroes-summer-fayre.html
 free printables for kids, kids learning games, lemonade stand for kids, printable certificate, problem solving for kids
 
 **Alt text:**
-A sample "Lean Hero Fayre Champion" certificate under fayre bunting and lemons, with "Your name here" on the name line, five gold stars for Suppliers, Inputs, Process, Outputs and Customers, Master Taff in a ring of stars, and an "I'm a Lean Hero!" badge seal. A banner says "Free to print! Lean Hero Certificate".
+A sample "Fayre Champion!" Lean Hero certificate under fayre bunting and lemons, with "Your name here" on the name line, five gold stars for Suppliers, Inputs, Process, Outputs and Customers, Master Taff in a ring of stars with a blank date line, and an "I'm a Lean Hero!" badge seal. A banner says "Free to print! Lean Hero Certificate".

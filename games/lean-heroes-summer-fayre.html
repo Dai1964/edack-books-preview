@@ -23,7 +23,7 @@
 <meta property="og:title" content="The Lean Heroes at the Summer Fayre: a free SIPOC game">
 <meta property="og:description" content="Plan a lemonade stall, run it on fayre day, and learn SIPOC. Free, for ages 8 to 11. Works on phones.">
 <meta property="og:url" content="https://www.edackdavid.com/games/lean-heroes-summer-fayre.html">
-<meta property="og:image" content="https://www.edackdavid.com/images/pins/summer-fayre-certificate-pin-v2.png">
+<meta property="og:image" content="https://www.edackdavid.com/images/pins/summer-fayre-certificate-pin-v3.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1000">
 <meta property="og:image:height" content="1500">
@@ -319,7 +319,7 @@
   .lh-bl { bottom: 24px; left: 24px; } .lh-br { bottom: 24px; right: 24px; }
   .lh-cert p { margin: 6px 0; font-size: 17px; line-height: 1.45; }
   .lh-cert .lh-kicker { margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.3em; color: #2F6B3A; }
-  .lh-cert .lh-title { margin: 6px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(40px, 9vw, 60px); font-weight: 700; line-height: 1; color: #3A2210; }
+  .lh-cert .lh-title { margin: 6px 0 12px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(36px, 8.5vw, 56px); font-weight: 700; line-height: 1; color: #3A2210; }
   .lh-cert .lh-sub { margin: 4px 0 14px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(22px, 5vw, 32px); font-style: italic; font-weight: 700; line-height: 1.15; color: #D9472F; }
   .lh-cert .lh-name {
     width: 80%; margin: 4px auto 10px; padding-bottom: 2px; border-bottom: 3px solid #3A2210;
@@ -332,7 +332,7 @@
   .lh-step-star::before, .lh-step-star::after { content: ""; position: absolute; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
   .lh-step-star::before { inset: 0; background: #E0A020; }
   .lh-step-star::after { inset: 4px; background: #FFC850; }
-  .lh-step-star b { position: relative; z-index: 1; padding-top: 9px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(19px, 5vw, 26px); }
+  .lh-step-star b { position: relative; z-index: 1; padding-top: 0.15em; font-family: Georgia, "Times New Roman", serif; font-size: clamp(19px, 5vw, 26px); }
   .lh-bottom { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 14px; text-align: left; }
   .lh-taff { position: relative; flex: none; width: 132px; height: 132px; }
   .lh-taff img { position: absolute; top: 23px; left: 23px; width: 86px; height: 86px; border: 3px solid #E0A020; border-radius: 50%; object-fit: cover; }
@@ -345,6 +345,9 @@
   .lh-sign { flex: 1; min-width: 0; }
   .lh-cert .lh-signature { margin: 0; border-bottom: 2px solid #3A2210; font-family: "Segoe Script", "Brush Script MT", "Comic Sans MS", cursive; font-size: 26px; line-height: 1.4; }
   .lh-cert .lh-role { margin: 4px 0 0; font-size: 14px; }
+  .lh-cert .lh-sensei { font-style: italic; }
+  .lh-cert .lh-date { font-weight: 700; }
+  .lh-cert .lh-collect { margin: 14px 0 0; font-size: 14px; font-weight: 700; color: #2F6B3A; }
   .lh-seal { position: relative; flex: none; width: 96px; height: 124px; }
   .lh-seal img { position: relative; z-index: 1; width: 96px; height: 96px; border-radius: 50%; }
   .lh-seal::before, .lh-seal::after { content: ""; position: absolute; top: 70px; width: 26px; height: 54px; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%); }
@@ -363,8 +366,9 @@
     .lh-steps { gap: 2px; }
     .lh-steps li { font-size: 10px; }
     .lh-step-star { width: 42px; }
-    .lh-step-star b { font-size: 18px; padding-top: 7px; }
+    .lh-step-star b { font-size: 18px; }
     .lh-cert .lh-site { padding-inline: 30px; margin-bottom: 12px; }
+    .lh-cert .lh-collect { padding-inline: 26px; font-size: 12px; }
   }
   .lh-cert, .lh-cert * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
@@ -391,7 +395,7 @@
     body { background: #fff; }
     body > *:not(#certificate-print) { display: none !important; }
     #certificate-print { display: block !important; }
-    .certificate { box-shadow: none; margin: 0; break-inside: avoid; }
+    .certificate { box-shadow: none; margin: 0 auto; break-inside: avoid; }
   }
 </style>
 </head>
@@ -515,7 +519,7 @@
         <!-- A plain link, not Pinterest's script: nothing is sent unless someone taps it. The child's name is never in it. -->
         <p class="pin-line">Proud of your Lean Hero? Print the certificate for the fridge, or save the free version to Pinterest to share the game.</p>
         <div class="button-row">
-          <a class="btn btn-pin" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.edackdavid.com%2Fgames%2Flean-heroes-summer-fayre.html&amp;media=https%3A%2F%2Fwww.edackdavid.com%2Fimages%2Fpins%2Fsummer-fayre-certificate-pin-v2.png&amp;description=Free%20Lean%20Heroes%20game%20for%20ages%208%20to%2011%3A%20plan%20a%20lemonade%20stall%20with%20SIPOC%2C%20then%20print%20a%20Lean%20Hero%20Fayre%20Champion%20certificate." target="_blank" rel="noopener">📌 Save to Pinterest</a>
+          <a class="btn btn-pin" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.edackdavid.com%2Fgames%2Flean-heroes-summer-fayre.html&amp;media=https%3A%2F%2Fwww.edackdavid.com%2Fimages%2Fpins%2Fsummer-fayre-certificate-pin-v3.png&amp;description=Free%20Lean%20Heroes%20game%20for%20ages%208%20to%2011%3A%20plan%20a%20lemonade%20stall%20with%20SIPOC%2C%20then%20print%20a%20Lean%20Hero%20Fayre%20Champion%20certificate." target="_blank" rel="noopener">📌 Save to Pinterest</a>
         </div>
       </div>
 
@@ -567,7 +571,7 @@
 
     <h3>Elements of Lean</h3>
     <p>Learn Lean by teaching it to your child. <a href="../elements-of-lean/bonus-sipoc/">Read the bonus lesson: SIPOC</a></p>
-    <p><a class="btn btn-pin" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.edackdavid.com%2Fgames%2Flean-heroes-summer-fayre.html&amp;media=https%3A%2F%2Fwww.edackdavid.com%2Fimages%2Fpins%2Fsummer-fayre-certificate-pin-v2.png&amp;description=Free%20Lean%20Heroes%20game%20for%20ages%208%20to%2011%3A%20plan%20a%20lemonade%20stall%20with%20SIPOC%2C%20then%20print%20a%20Lean%20Hero%20Fayre%20Champion%20certificate." target="_blank" rel="noopener">📌 Save to Pinterest</a></p>
+    <p><a class="btn btn-pin" href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.edackdavid.com%2Fgames%2Flean-heroes-summer-fayre.html&amp;media=https%3A%2F%2Fwww.edackdavid.com%2Fimages%2Fpins%2Fsummer-fayre-certificate-pin-v3.png&amp;description=Free%20Lean%20Heroes%20game%20for%20ages%208%20to%2011%3A%20plan%20a%20lemonade%20stall%20with%20SIPOC%2C%20then%20print%20a%20Lean%20Hero%20Fayre%20Champion%20certificate." target="_blank" rel="noopener">📌 Save to Pinterest</a></p>
   </div>
 </dialog>
 
@@ -1336,23 +1340,22 @@
     const ring = el('span', { className: 'lh-ring', 'aria-hidden': 'true' }, Array.from({ length: 16 }, (_, i) => el('span', { style: '--i:' + i })));
     return el('div', { className: 'certificate lh-cert' }, [
       ...corners,
-      el('p', { className: 'lh-kicker', text: 'LEAN HEROES · SUMMER FAYRE' }),
-      el('h2', { className: 'lh-title', text: 'Lean Hero' }),
-      el('p', { className: 'lh-sub', text: 'Fayre Champion' }),
-      el('p', { text: 'This certificate is awarded to' }),
+      el('h2', { className: 'lh-title', text: 'Fayre Champion!' }),
+      el('p', { text: 'This award goes to' }),
       el('p', { className: 'lh-name', text: name }),
-      el('p', { text: 'for planning a lemonade stall with SIPOC and running it at the Summer Fayre!' }),
+      el('p', { text: 'who mapped the whole lemonade stall with SIPOC, from suppliers to happy customers!' }),
       el('ul', { className: 'lh-steps', 'aria-label': 'The five SIPOC columns, all done' }, steps),
       el('p', { text: day ? 'Cups sold: ' + day.sold + ' · Raised for the treehouse dojo: ' + money(day.sold * PRICE) : '' }),
       el('div', { className: 'lh-bottom' }, [
         el('div', { className: 'lh-taff' }, [ring, el('img', { src: TAFF_PHOTO, width: '86', height: '86', alt: 'Master Taff, the bearded dragon sensei' })]),
         el('div', { className: 'lh-sign' }, [
           el('p', { className: 'lh-signature', text: 'Master Taff' }),
-          el('p', { className: 'lh-role', text: 'Sensei, Treehouse Dojo' }),
-          el('p', { className: 'lh-role', text: today })
+          el('p', { className: 'lh-role lh-sensei', text: 'Sensei, Treehouse Dojo' }),
+          el('p', { className: 'lh-role lh-date', text: 'Date: ' + today })
         ]),
         el('div', { className: 'lh-seal' }, [el('img', { src: BADGE_PHOTO, width: '96', height: '96', alt: "I'm a Lean Hero! badge" })])
       ]),
+      el('p', { className: 'lh-collect', text: 'Certificate 2 of 2 · Collect the Dinner Disaster one too!' }),
       el('p', { className: 'lh-site', text: 'EDACK Books · www.edackdavid.com' })
     ]);
   }
