@@ -166,8 +166,9 @@
       <nav id="site-nav" class="site-nav" popover aria-label="Main">
         <ul>
           <li><a href="#books">Books</a></li>
-          <li><a href="#game">Game</a></li>
+          <li><a href="#game">Free games</a></li>
           <li><a href="#free-printable">Free printables</a></li>
+          <li><a href="#satire">Satire</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -188,18 +189,29 @@
         <p class="eyebrow">EDACK Books</p>
         <h1 id="hero-title">Funny books that make you think.</h1>
         <p class="hero-sub">Stories for curious kids and grown-ups who've had enough.</p>
-        <div class="button-row">
-          <a class="btn btn-primary" href="#books">For kids: Lean Heroes</a>
-          <a class="btn btn-secondary" href="#satire">For grown-ups: satire</a>
+        <!-- Two doors: one for kids, one for grown-ups. The listening line is only in the grown-ups' door. -->
+        <div class="doors">
+          <article class="door door-kids" aria-labelledby="door-kids-title">
+            <h2 class="door-title" id="door-kids-title">For kids <span class="nowrap">aged 8–11:</span> Lean Heroes</h2>
+            <p>A picture book about fixing problems, 2 free games, and a free printable certificate.</p>
+            <a class="btn btn-primary" href="#books">See Lean Heroes</a>
+          </article>
+          <article class="door door-grown-ups" aria-labelledby="door-grown-ups-title">
+            <h2 class="door-title" id="door-grown-ups-title">For grown-ups: British satire</h2>
+            <p>Two comic novels. <span aria-hidden="true">🎧</span> Listen to the first chapters free.</p>
+            <a class="btn btn-primary" href="#satire">See the satire</a>
+          </article>
         </div>
-        <p class="hero-note"><span aria-hidden="true">🎧</span> <a href="#satire">Listen to the first chapters free.</a></p>
       </div>
     </section>
+
+    <!-- THE KIDS' HALF: the Lean Heroes book, the games, Taff and the printables, all on one soft gold band -->
+    <div class="half half-kids">
 
     <!-- 2. The Lean Heroes (featured book) -->
     <section class="section section-kids" id="books" aria-labelledby="lean-heroes-title">
       <div class="container">
-        <p class="eyebrow">For kids</p>
+        <h2 class="half-title" id="kids-title">For kids: Lean Heroes</h2>
         <article class="feature-card reveal">
           <div class="feature-cover">
             <img src="images/lean-heroes-cover-480.webp"
@@ -285,7 +297,6 @@
          Keep id="free-printable": Pinterest pins link to it. -->
     <section class="section section-printable" id="free-printable" aria-labelledby="printable-title">
       <div class="container">
-        <p class="eyebrow">Free to download</p>
         <h2 id="printable-title">Free printables</h2>
         <p class="lead">Print them at home, free.</p>
         <p class="small">A4 is for the UK and Europe. US Letter is for the USA and Canada.</p>
@@ -312,11 +323,19 @@
       </div>
     </section>
 
+    </div>
+    <!-- END OF THE KIDS' HALF -->
+
+    <!-- The divider between the two halves -->
+    <div class="half-divider" role="separator" aria-label="End of the kids' half. Next: for grown-ups">
+      <p class="container half-divider-text"><span aria-hidden="true">↓</span> For grown-ups</p>
+    </div>
+
+    <!-- THE GROWN-UPS' HALF -->
     <!-- 4. For grown-ups: British satire -->
-    <section class="section section-satire" id="satire" aria-labelledby="satire-title">
+    <section class="section section-satire half half-grown-ups" id="satire" aria-labelledby="satire-title">
       <div class="container">
-        <p class="eyebrow">For grown-ups</p>
-        <h2 id="satire-title">British satire</h2>
+        <h2 class="half-title" id="satire-title">For grown-ups: British satire</h2>
 
         <div class="book-grid">
           <article class="book-card reveal">
@@ -331,10 +350,10 @@
                 <h4 class="listen-title"><span aria-hidden="true">🎧</span> Listen to Chapter One, free</h4>
                 <p class="listen-meta">About 15 minutes · Narrated with digital voices.</p>
                 <!-- preload="none": phones only download the chapter when someone presses play -->
-                <audio controls preload="none" src="audio/cookie-chapter-1.mp3" aria-label="Chapter One of Cookie and the Pantomime of Power">
-                  <a href="audio/cookie-chapter-1.mp3">Download Chapter One (MP3)</a>
+                <audio controls controlslist="nodownload" preload="none" src="audio/cookie-chapter-1.mp3" aria-label="Chapter One of Cookie and the Pantomime of Power">
+                  Your browser can't play this here. Use the download link below.
                 </audio>
-                <a class="listen-download" href="audio/cookie-chapter-1.mp3" download>Download MP3<span class="visually-hidden"> of Chapter One of Cookie and the Pantomime of Power</span> (9 MB)</a>
+                <a class="listen-download" href="audio/cookie-chapter-1.mp3" download>Download Chapter One<span class="visually-hidden"> of Cookie and the Pantomime of Power</span> (MP3, 9 MB)</a>
               </div>
               <p class="see-amazon">See it on Amazon:</p>
               <div class="button-row">
@@ -361,10 +380,10 @@
                 <h4 class="listen-title"><span aria-hidden="true">🎧</span> Listen to Chapter One, free</h4>
                 <p class="listen-meta">About 15 minutes · Narrated with digital voices.</p>
                 <!-- preload="none": phones only download the chapter when someone presses play -->
-                <audio controls preload="none" src="audio/watchers-guide-chapter-1.mp3" aria-label="Chapter One of The Watcher's Guide to the End of the World">
-                  <a href="audio/watchers-guide-chapter-1.mp3">Download Chapter One (MP3)</a>
+                <audio controls controlslist="nodownload" preload="none" src="audio/watchers-guide-chapter-1.mp3" aria-label="Chapter One of The Watcher's Guide to the End of the World">
+                  Your browser can't play this here. Use the download link below.
                 </audio>
-                <a class="listen-download" href="audio/watchers-guide-chapter-1.mp3" download>Download MP3<span class="visually-hidden"> of Chapter One of The Watcher's Guide to the End of the World</span> (9 MB)</a>
+                <a class="listen-download" href="audio/watchers-guide-chapter-1.mp3" download>Download Chapter One<span class="visually-hidden"> of The Watcher's Guide to the End of the World</span> (MP3, 9 MB)</a>
               </div>
               <p class="see-amazon">See it on Amazon:</p>
               <div class="button-row">

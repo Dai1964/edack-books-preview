@@ -1410,3 +1410,140 @@ a {
     margin-inline: 0;
   }
 }
+
+/* ---------- Home page: two halves, kids and grown-ups ---------- */
+/* The two "doors" at the top. Stacked on phones, side by side on bigger screens. */
+.doors {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .doors {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 900px) {
+  .hero-content > .doors {
+    max-width: 44rem;
+  }
+
+  /* Less space above the headline, so both doors fit on the first screen */
+  .hero-content {
+    padding-block: 24px 64px;
+  }
+
+  .hero-sub {
+    margin-bottom: 16px;
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.door {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 22px;
+  border: 2px solid;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.door p {
+  margin: 0;
+}
+
+.door .btn {
+  justify-self: start;
+  margin-top: 4px;
+}
+
+@media (max-width: 479px) {
+  .door .btn {
+    justify-self: stretch;
+  }
+}
+
+.door-title {
+  margin: 0;
+  font-size: clamp(1.3rem, 1vw + 1rem, 1.5rem);
+  line-height: 1.2;
+}
+
+.door-kids {
+  border-color: var(--gold);
+  background: linear-gradient(var(--gold-soft), var(--gold-soft)), var(--surface);
+  color: var(--text);
+}
+
+.door-grown-ups {
+  border-color: #3A2210;
+  background: #3A2210;
+  color: var(--cream);
+}
+
+@media (prefers-color-scheme: dark) {
+  .door-grown-ups {
+    border-color: rgba(253, 243, 223, 0.3);
+    background: #120A04;
+  }
+}
+
+/* Each half has its own colour band and a coloured stripe down the left edge,
+   so on a phone you can always tell which half you're in. */
+.half-kids {
+  background: linear-gradient(var(--gold-soft), var(--gold-soft)), var(--bg);
+  box-shadow: inset 8px 0 0 var(--gold);
+}
+
+.half-kids .section-printable {
+  background: transparent;
+}
+
+.half-grown-ups {
+  box-shadow: inset 8px 0 0 var(--coral);
+}
+
+.half-title {
+  margin: 0 0 32px;
+  font-size: clamp(2rem, 4vw + 1rem, 3.25rem);
+  line-height: 1.1;
+}
+
+/* The divider between the halves */
+.half-divider {
+  border-block: 4px solid var(--brown);
+  background: var(--coral);
+  color: var(--brown);
+}
+
+.half-divider-text {
+  margin-block: 0;
+  padding-block: 14px;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Phones: the Lean Heroes artwork goes above the words, so it never looks like part of the grown-ups' door */
+@media (max-width: 899px) {
+  .hero-bg {
+    order: -1;
+    height: clamp(220px, 60vw, 420px);
+    object-fit: cover;
+    object-position: 50% 62%;
+    margin: 0 0 -8px;
+    -webkit-mask-image: linear-gradient(to top, transparent 0%, #000 32%);
+    mask-image: linear-gradient(to top, transparent 0%, #000 32%);
+  }
+
+  .hero-content {
+    padding-block: 0 48px;
+  }
+}
