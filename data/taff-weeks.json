@@ -1,0 +1,132 @@
+{
+  "about": "Taff of the week, on the home page. Week 1 starts Monday 26 October 2026 with photo 1, and the list loops back to photo 1 after the last one. Read by js/taff-of-the-week.js.",
+  "start": "2026-10-26",
+  "weeks": [
+    {
+      "file": "taff-01-halloween.jpg",
+      "caption": "Dressed up for Halloween. He is not impressed.",
+      "idea": "Ask the customer what they value.",
+      "ideaMore": "Nobody asked Taff if he wanted a hat.",
+      "alt": "Bearded dragon wearing a small orange Halloween hat with bat wings",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-02-salad.jpg",
+      "caption": "Breakfast is served.",
+      "idea": "Just in time.",
+      "ideaMore": "Fresh food arrives when it's needed, not a week early.",
+      "alt": "Bearded dragon in his vivarium next to a bowl of fresh greens",
+      "width": 900,
+      "height": 1600
+    },
+    {
+      "file": "taff-03-about-to-pounce.jpg",
+      "caption": "About to pounce.",
+      "idea": "Spot the warning signs.",
+      "ideaMore": "Watch the beard. If it goes dark, stop what you're doing.",
+      "alt": "Bearded dragon held on a hand in a sunny garden, looking alert",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-04-bath.jpg",
+      "caption": "Bath time.",
+      "idea": "Standard work.",
+      "ideaMore": "Same steps, same order, every time, so nothing gets missed.",
+      "alt": "Bearded dragon having a shallow bath in a white tub",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-05-garden-bench.jpg",
+      "caption": "A long stretch on the garden bench.",
+      "idea": "Flow.",
+      "ideaMore": "No stops, no waiting, just one smooth line from start to finish.",
+      "alt": "Bearded dragon stretched out on a wooden garden bench in the sun",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-06-water-bowl.jpg",
+      "caption": "Guarding the water bowl.",
+      "idea": "Find the bottleneck.",
+      "ideaMore": "It's the one thing everything else waits for.",
+      "alt": "Bearded dragon sitting in his water bowl next to his food",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-07-heat-slab.jpg",
+      "caption": "Warming up on his heat slab.",
+      "idea": "A place for everything.",
+      "ideaMore": "This is his spot, and everyone knows it.",
+      "alt": "Bearded dragon lying on a dark slab on white decking",
+      "width": 1600,
+      "height": 831
+    },
+    {
+      "file": "taff-08-table-again.jpg",
+      "caption": "On the table again.",
+      "idea": "Ask \"why?\" five times.",
+      "ideaMore": "Why is he on the table? Because it's warm. Why is it warm? Keep going.",
+      "alt": "Bearded dragon curled on a white garden table by a brick wall",
+      "width": 1268,
+      "height": 1600
+    },
+    {
+      "file": "taff-09-summer-house.jpg",
+      "caption": "Checking the view from the summer house.",
+      "idea": "Go and see.",
+      "ideaMore": "You learn more by looking than by guessing.",
+      "alt": "Bearded dragon climbing a wooden branch on green matting",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-10-living-room.jpg",
+      "caption": "On patrol across the living room.",
+      "idea": "Wasted motion.",
+      "ideaMore": "He walked the long way round. Twice.",
+      "alt": "Bearded dragon walking across a wooden living room floor",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-11-climbing.jpg",
+      "caption": "Climbing up to check the lamp.",
+      "idea": "Small steps.",
+      "ideaMore": "Big changes are made of lots of little climbs.",
+      "alt": "Bearded dragon climbing a bamboo log in his vivarium",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-12-posing.jpg",
+      "caption": "Posing for the camera.",
+      "idea": "Make good work visible.",
+      "ideaMore": "If it went well, show people.",
+      "alt": "Bearded dragon posing on a white garden table in bright sun",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-13-garden-branch.jpg",
+      "caption": "Sunbathing on a branch.",
+      "idea": "Keep improving.",
+      "ideaMore": "Find a warm spot, then find a slightly warmer one.",
+      "alt": "Bearded dragon on a driftwood branch against a brick wall",
+      "width": 720,
+      "height": 1600
+    },
+    {
+      "file": "taff-14-sitting-on-hand.jpg",
+      "caption": "Sitting comfortably.",
+      "idea": "Mistake-proofing.",
+      "ideaMore": "Hold him like this and nobody gets dropped.",
+      "alt": "Bearded dragon sitting on an open hand in the garden",
+      "width": 720,
+      "height": 1600
+    }
+  ]
+}
