@@ -1562,3 +1562,33 @@ a {
     mask-image: linear-gradient(to right, transparent 0%, #000 22%);
   }
 }
+
+/* ---------- Game cards: the certificate you earn ---------- */
+.game-cert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-block: 4px 20px;
+  font-weight: 700;
+}
+
+.game-cert img {
+  flex: none;
+  width: 96px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  transform: rotate(-3deg);
+}
+
+.game-cert span {
+  max-width: 22ch;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .game-cert {
+    justify-content: flex-start;
+  }
+}
