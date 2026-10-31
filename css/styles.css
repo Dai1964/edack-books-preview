@@ -1647,3 +1647,12 @@ a {
   margin-top: 2em;
   font-size: 1.3rem;
 }
+
+/* ---------- The Lunchbox Lean game card ---------- */
+.game-card-lunchbox {
+  border-color: color-mix(in srgb, var(--green) 55%, transparent);
+}
+
+.game-emoji-lunchbox {
+  background: #E3F2E1;
+}

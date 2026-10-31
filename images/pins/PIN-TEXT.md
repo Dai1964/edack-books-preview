@@ -89,3 +89,26 @@ problem solving for kids, kids learning games, free printable certificate, lean 
 
 **Alt text:**
 Cartoon woodland friends around a messy dinner table, under the headline "Teach your kids to fix problems, not blame people." A sample "Dinner Disaster Solved!" certificate sits in the corner. A strip says "Free game + printable certificate, ages 8 to 11".
+
+---
+
+# Pin text: Lunchbox Lean certificate
+
+**Picture:** `lunchbox-lean-certificate-pin.png` (in this folder)
+
+**Board:** Free printables for kids
+
+**Title:**
+Free lunchbox planning game for kids, with a printable Lunchbox Lean Hero certificate
+
+**Description:**
+Kids plan their own school lunches on a Kanban board, track what gets eaten and what comes home, and learn to cut food waste the Lean way. It's a free kids learning game for ages 8 to 11. At the end, they print a Lunchbox Lean Hero certificate for the fridge, with a "please buy more" list for their grown-up.
+
+**Link:**
+https://www.edackdavid.com/games/lunchbox-lean.html
+
+**Tags (5):**
+lunchbox ideas for kids, free printable certificate, kids learning games, reduce food waste, lean thinking
+
+**Alt text:**
+A sample "Lunchbox Lean Hero!" certificate on a red gingham background, with "Your name here", three score circles, boxes for foods I like, foods I don't like, foods I can't have and please buy more, and Master Taff's signature. A banner says "Free to print! Lunchbox Lean Hero".
