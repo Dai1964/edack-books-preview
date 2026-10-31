@@ -1592,3 +1592,58 @@ a {
     justify-content: flex-start;
   }
 }
+
+/* ---------- For Lean practitioners (a calm, grown-up page) ---------- */
+.practitioners {
+  background: var(--surface);
+}
+
+.practitioners .lesson-inner {
+  max-width: 680px;
+}
+
+.practitioners h1 {
+  margin-bottom: 1em;
+}
+
+.practitioners h2 {
+  margin-top: 2em;
+  font-size: clamp(1.4rem, 1.5vw + 1rem, 1.8rem);
+}
+
+.practitioners p,
+.practitioners li {
+  line-height: 1.7;
+}
+
+.practitioners ul {
+  padding-left: 1.2em;
+}
+
+.practitioners li {
+  margin-bottom: 0.8em;
+}
+
+.practitioners-here {
+  display: grid;
+  gap: 24px;
+}
+
+.practitioners-cover {
+  width: 180px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 640px) {
+  .practitioners-here {
+    grid-template-columns: 180px 1fr;
+    align-items: start;
+  }
+}
+
+.practitioners-sign {
+  margin-top: 2em;
+  font-size: 1.3rem;
+}
